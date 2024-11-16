@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.md.kebunq.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.md.kebunq.ui.history.HistoryFragment"
+        android:label="@string/History"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/navigation_community"
+        android:name="com.md.kebunq.ui.community.CommunityFragment"
+        android:label="@string/community"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_list_penyakit"
+        android:name="com.md.kebunq.ui.listPenyakit.ListPenyakitFragment"
+        android:label="@string/list_penyakit"
+        tools:layout="@layout/fragment_list_penyakit"/>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.md.kebunq.ui.settings.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings"/>
+</navigation>

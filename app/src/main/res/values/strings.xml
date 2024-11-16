@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">KebunQ</string>
+    <string name="title_home">Home</string>
+    <string name="community">Community</string>
+    <string name="History">History</string>
+    <string name="list_penyakit">List Penyakit</string>
+    <string name="settings">Settings</string>
+</resources>
