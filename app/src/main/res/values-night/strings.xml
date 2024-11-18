@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tanggal_prediksi">Tanggal Prediksi</string>
+    <string name="empty_state">Hasil Prediksi Masih Kosong</string>
+    <string name="nama_penyakit">Judul Nama Penyakit</string>
+</resources>
