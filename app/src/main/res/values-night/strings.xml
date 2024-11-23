@@ -3,4 +3,6 @@
     <string name="tanggal_prediksi">Tanggal Prediksi</string>
     <string name="empty_state">Hasil Prediksi Masih Kosong</string>
     <string name="nama_penyakit">Judul Nama Penyakit</string>
+    <string name="confidenceScoredanTanggal">Confidence Score - 20 Oktober 2024</string>
+    <string name="isi_hasil_analisis">Isi dari Hasil Analisis</string>
 </resources>
