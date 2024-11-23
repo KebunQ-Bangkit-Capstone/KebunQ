@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.md.kebunq.R
 
-class ListPenyakitFragment : Fragment() {
+class DetailPenyakitFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ListPenyakitFragment()
+        fun newInstance() = DetailPenyakitFragment()
     }
 
-    private val viewModel: ListPenyakitViewModel by viewModels()
+    private val viewModel: DetailPenyakitViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +25,6 @@ class ListPenyakitFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_list_penyakit, container, false)
+        return inflater.inflate(R.layout.fragment_detail_penyakit, container, false)
     }
 }
