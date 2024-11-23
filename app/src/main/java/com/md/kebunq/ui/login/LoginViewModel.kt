@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
 import com.md.kebunq.R
-import com.md.kebunq.ui.data.LoginRepository
-import com.md.kebunq.ui.data.Result
+import com.md.kebunq.data.LoginRepository
+import com.md.kebunq.data.Result
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.md.kebunq.ui.data.model
+package com.md.kebunq.data.model
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

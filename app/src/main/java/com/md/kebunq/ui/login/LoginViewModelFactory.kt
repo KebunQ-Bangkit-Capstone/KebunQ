@@ -2,8 +2,8 @@ package com.md.kebunq.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.md.kebunq.ui.data.LoginDataSource
-import com.md.kebunq.ui.data.LoginRepository
+import com.md.kebunq.data.LoginDataSource
+import com.md.kebunq.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
