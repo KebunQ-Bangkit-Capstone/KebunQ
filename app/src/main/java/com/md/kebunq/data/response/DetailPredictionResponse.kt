@@ -19,11 +19,11 @@ data class DetailPredictionResponse(
 	@field:SerializedName("created_at")
 	val createdAt: String,
 
+	@field:SerializedName("temporary_image_url")
+	val temporaryImageUrl: String,
+
 	@field:SerializedName("disease_index")
 	val diseaseIndex: Int,
-
-	@field:SerializedName("image_id")
-	val imageId: String,
 
 	@field:SerializedName("analysis")
 	val analysis: String,
