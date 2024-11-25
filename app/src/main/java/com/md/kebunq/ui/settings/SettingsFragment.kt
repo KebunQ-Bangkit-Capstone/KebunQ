@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.md.kebunq.R
 import com.md.kebunq.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -35,6 +37,10 @@ class SettingsFragment : Fragment() {
         // Set up the switch listener to update dark mode setting
         binding.toggleDarkmode.setOnCheckedChangeListener { _, isChecked ->
             settingViewModel.saveDarkModeSetting(isChecked)
+        }
+
+        binding.btnAccountPriv.setOnClickListener {
+            findNavController().navigate(R.id.accPrivacyFragment)
         }
     }
 
