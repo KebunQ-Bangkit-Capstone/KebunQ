@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.md.kebunq.R
 import com.md.kebunq.data.response.DiseasesItem
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentCucumberBinding
@@ -34,15 +36,16 @@ class CucumberFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = PenyakitAdapter { diseaseItem ->
-            // Handle item click, jika ada
-            onDiseaseItemClicked(diseaseItem)
+            val navController = findNavController()
+            val bundle = Bundle().apply {
+                putParcelable("disease_item", diseaseItem)
+                putString("plant_id", "0") // Plant ID untuk Cucumber
+            }
+            navController.navigate(R.id.action_cucumberFragment_to_detailPenyakitFragment, bundle)
         }
+
         setupRecyclerView()
         setupViewModel()
-    }
-
-    private fun onDiseaseItemClicked(diseaseItem: DiseasesItem) {
-        Toast.makeText(context, "Clicked: ${diseaseItem.description}", Toast.LENGTH_SHORT).show()
     }
 
     private fun setupRecyclerView() {
@@ -54,14 +57,12 @@ class CucumberFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        // API service and ViewModelFactory setup
-        val apiService = ApiConfig.getApiService() // Assuming ApiConfig is configured
+        val apiService = ApiConfig.getApiService()
         viewModel = ViewModelProvider(
             this,
             PenyakitViewModelFactory(apiService)
         )[ListPenyakitViewModel::class.java]
 
-        // Observe diseases data
         viewModel.diseases.observe(viewLifecycleOwner) { diseases ->
             if (diseases.isEmpty()) {
                 binding.tvEmptyMessage.visibility = View.VISIBLE

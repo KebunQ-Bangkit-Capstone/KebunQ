@@ -1,6 +1,8 @@
 package com.md.kebunq.data.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class DiseasesResponse(
 
@@ -8,6 +10,7 @@ data class DiseasesResponse(
 	val diseases: List<DiseasesItem>
 )
 
+@Parcelize
 data class DiseasesItem(
 
 	@field:SerializedName("treatment")
@@ -33,4 +36,4 @@ data class DiseasesItem(
 
 	@field:SerializedName("article")
 	val article: String
-)
+) : Parcelable

@@ -12,9 +12,10 @@ interface ApiService {
         @Query("plant_index") plantId: String
     ): Call<DiseasesResponse>
 
-    @GET("diseases/{id}")
+    @GET("diseases/{id_plant}_{id_disease}")
     fun getDiseaseById(
-        @Path("id") diseaseId: String
+        @Path("id_plant") plantId: String,
+        @Path("id_disease") diseaseId: String
     ): Call<DiseasesResponse>
 
     @GET("diseases/all")

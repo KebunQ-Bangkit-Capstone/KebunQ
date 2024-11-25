@@ -7,7 +7,7 @@
     tools:context=".ui.listPenyakit.TomatoFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvEvents"
+        android:id="@+id/rv_plants"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"

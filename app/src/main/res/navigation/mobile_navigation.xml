@@ -43,5 +43,18 @@
         android:id="@+id/navigation_cucumber"
         android:name="com.md.kebunq.ui.listPenyakit.CucumberFragment"
         android:label="Cucumber"
-        tools:layout="@layout/fragment_cucumber"/>
+        tools:layout="@layout/fragment_cucumber">
+        <action
+            android:id="@+id/action_cucumberFragment_to_detailPenyakitFragment"
+            app:destination="@id/navigation_detail_penyakit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detail_penyakit"
+        android:name="com.md.kebunq.ui.listPenyakit.DetailPenyakitFragment"
+        android:label="Detail Penyakit" >
+        <argument
+            android:name="disease_item"
+            app:argType="com.md.kebunq.data.response.DiseasesItem" />
+    </fragment>
 </navigation>

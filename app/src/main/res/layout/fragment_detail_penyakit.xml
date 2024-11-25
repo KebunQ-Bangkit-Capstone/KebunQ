@@ -7,7 +7,7 @@
     android:padding="16dp">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_event"
+        android:id="@+id/iv_plant"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:scaleType="centerCrop"
@@ -26,9 +26,9 @@
         android:textColor="?attr/colorOnSurface"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_event"
-        app:layout_constraintStart_toEndOf="@+id/iv_event"
-        app:layout_constraintTop_toTopOf="@+id/iv_event"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_plant"
+        app:layout_constraintStart_toEndOf="@+id/iv_plant"
+        app:layout_constraintTop_toTopOf="@+id/iv_plant"
         tools:text="@string/nama_penyakit" />
 
     <TextView
@@ -37,11 +37,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:text="@string/description"
         android:textColor="?attr/colorOnSurface"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_event"
-        tools:text="Description" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_plant"
+        />
 
     <TextView
         android:id="@+id/tv_description"
