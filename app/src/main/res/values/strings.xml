@@ -5,4 +5,9 @@
     <string name="History">History</string>
     <string name="list_penyakit">List Penyakit</string>
     <string name="settings">Settings</string>
+    <string name="selamat_datang">Selamat Datang, Nama User!</string>
+    <string name="ajakan_deteksi">Deteksi Penyakit \nSayuranmu Sekarang!</string>
+    <string name="fab_content_desc">deteksi</string>
+    <string name="tv_deskripsi_home">Khusus untuk Tomat, Cabe, dan \nTimun ya..</string>
+    <string name="tv_judul_history_analisi">History Hasil Prediksi</string>
 </resources>
