@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".ui.settings.AccPrivacyFragment">
+    tools:context=".ui.settings.TermsConsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,12 +12,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_privacy_policy"
+            android:id="@+id/tv_terms_cons"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="16dp"
             android:justificationMode="inter_word"
-            android:text="@string/teks_privasi_akun"
+            android:text="@string/teks_syarat_ketentuan"
             android:textSize="16sp" />
 
     </LinearLayout>

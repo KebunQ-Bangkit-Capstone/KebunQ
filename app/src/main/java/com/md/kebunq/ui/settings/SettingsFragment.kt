@@ -42,6 +42,10 @@ class SettingsFragment : Fragment() {
         binding.btnAccountPriv.setOnClickListener {
             findNavController().navigate(R.id.accPrivacyFragment)
         }
+
+        binding.btnTermsCons.setOnClickListener {
+            findNavController().navigate(R.id.termsConsFragment)
+        }
     }
 
     override fun onDestroyView() {
