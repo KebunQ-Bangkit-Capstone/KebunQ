@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation("com.google.code.gson:gson:2.11.0")
     implementation(libs.logging.interceptor)
 
 
