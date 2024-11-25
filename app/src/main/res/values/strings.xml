@@ -37,4 +37,5 @@
     <string name="error_msg_chili">No chili disease available</string>
     <string name="nama_penyakit">Nama Jenis Penyakit</string>
     <string name="plant_disease_image">plant disease image</string>
+    <string name="error_msg_listdiseases">No list diseases available</string>
 </resources>

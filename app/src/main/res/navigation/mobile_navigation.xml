@@ -21,17 +21,27 @@
         android:id="@+id/navigation_community"
         android:name="com.md.kebunq.ui.community.CommunityFragment"
         android:label="@string/community"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_community" />
 
     <fragment
         android:id="@+id/navigation_list_penyakit"
         android:name="com.md.kebunq.ui.listPenyakit.ListPenyakitFragment"
         android:label="@string/list_penyakit"
-        tools:layout="@layout/fragment_list_penyakit"/>
+        tools:layout="@layout/fragment_list_penyakit">
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_cucumberFragment"
+            app:destination="@id/navigation_cucumber" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.md.kebunq.ui.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings"/>
+
+    <fragment
+        android:id="@+id/navigation_cucumber"
+        android:name="com.md.kebunq.ui.listPenyakit.CucumberFragment"
+        android:label="Cucumber"
+        tools:layout="@layout/fragment_cucumber"/>
 </navigation>
