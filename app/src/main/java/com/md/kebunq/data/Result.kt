@@ -1,4 +1,4 @@
-package com.md.kebunq.ui.data
+package com.md.kebunq.data
 
 /**
  * A generic class that holds a value with its loading status.
