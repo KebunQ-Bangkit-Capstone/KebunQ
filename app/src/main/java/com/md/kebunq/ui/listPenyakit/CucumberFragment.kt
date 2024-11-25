@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.md.kebunq.R
-import com.md.kebunq.data.response.DiseasesItem
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentCucumberBinding
 import com.md.kebunq.viewmodel.PenyakitViewModelFactory
@@ -39,7 +37,7 @@ class CucumberFragment : Fragment() {
             val navController = findNavController()
             val bundle = Bundle().apply {
                 putParcelable("disease_item", diseaseItem)
-                putString("plant_id", "0") // Plant ID untuk Cucumber
+                putString("plant_id", "0")
             }
             navController.navigate(R.id.action_cucumberFragment_to_detailPenyakitFragment, bundle)
         }
@@ -72,13 +70,11 @@ class CucumberFragment : Fragment() {
             }
         }
 
-        // Observe loading state
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 
-        // Fetch diseases for cucumber (plantIndex = 0)
-        viewModel.fetchDiseasesByPlant("0") // You can replace this with dynamic plant index as needed
+        viewModel.fetchDiseasesByPlant("0")
     }
 
     override fun onDestroyView() {

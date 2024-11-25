@@ -31,6 +31,12 @@
         <action
             android:id="@+id/action_listPenyakitFragment_to_cucumberFragment"
             app:destination="@id/navigation_cucumber" />
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_grapeFragment"
+            app:destination="@id/navigation_grape" />
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_tomatoFragment"
+            app:destination="@id/navigation_tomato" />
     </fragment>
 
     <fragment
@@ -46,6 +52,26 @@
         tools:layout="@layout/fragment_cucumber">
         <action
             android:id="@+id/action_cucumberFragment_to_detailPenyakitFragment"
+            app:destination="@id/navigation_detail_penyakit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_grape"
+        android:name="com.md.kebunq.ui.listPenyakit.GrapeFragment"
+        android:label="Grape"
+        tools:layout="@layout/fragment_grape">
+        <action
+            android:id="@+id/action_grapeFragment_to_detailPenyakitFragment"
+            app:destination="@id/navigation_detail_penyakit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_tomato"
+        android:name="com.md.kebunq.ui.listPenyakit.TomatoFragment"
+        android:label="Grape"
+        tools:layout="@layout/fragment_tomato">
+        <action
+            android:id="@+id/action_tomatoFragment_to_detailPenyakitFragment"
             app:destination="@id/navigation_detail_penyakit" />
     </fragment>
 

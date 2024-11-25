@@ -29,17 +29,16 @@ class ListPenyakitFragment : Fragment() {
         val plantAdapter = PlantAdapter { plantName ->
             when (plantName) {
                 "Timun" -> {
-                    // Ketika "Timun" diklik, navigasi ke CucumberFragment
                     val navController = findNavController()
                     navController.navigate(R.id.action_listPenyakitFragment_to_cucumberFragment)
-
                 }
-                // Bisa tambahkan logika serupa untuk "Anggur" atau "Tomat" jika diperlukan
                 "Anggur" -> {
-                    // Logika untuk Anggur
+                    val navController = findNavController()
+                    navController.navigate(R.id.action_listPenyakitFragment_to_grapeFragment)
                 }
                 "Tomat" -> {
-                    // Logika untuk Tomat
+                    val navController = findNavController()
+                    navController.navigate(R.id.action_listPenyakitFragment_to_tomatoFragment)
                 }
             }
         }
