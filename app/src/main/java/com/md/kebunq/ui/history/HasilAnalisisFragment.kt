@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.md.kebunq.R
 import com.md.kebunq.databinding.FragmentHasilAnalisisBinding
 
 class HasilAnalisisFragment : Fragment() {
@@ -15,7 +14,7 @@ class HasilAnalisisFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHasilAnalisisBinding.inflate(inflater, container, false)
         return binding.root
     }

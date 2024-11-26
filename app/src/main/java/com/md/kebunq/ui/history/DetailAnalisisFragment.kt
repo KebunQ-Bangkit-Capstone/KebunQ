@@ -14,7 +14,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.md.kebunq.R
 import com.md.kebunq.data.retrofit.ApiConfig
-import com.md.kebunq.data.retrofit.ApiService
 import com.md.kebunq.databinding.FragmentDetailAnalisisBinding
 
 class DetailAnalisisFragment : Fragment() {

@@ -5,13 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.md.kebunq.R
 import com.md.kebunq.databinding.FragmentSaranPengobatanBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class SaranPengobatanFragment : Fragment() {
     private var _binding: FragmentSaranPengobatanBinding? = null
@@ -20,7 +14,7 @@ class SaranPengobatanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSaranPengobatanBinding.inflate(inflater, container, false)
         return binding.root
     }
