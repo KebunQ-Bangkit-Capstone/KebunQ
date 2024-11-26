@@ -6,6 +6,7 @@
     tools:context=".ui.history.SaranPengobatanFragment">
 
     <TextView
+        android:id="@+id/tv_saran_pengobatan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
