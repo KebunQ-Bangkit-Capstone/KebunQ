@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.md.kebunq.R
 import com.md.kebunq.databinding.FragmentHistoryBinding
 
 class HistoryFragment : Fragment() {
@@ -16,7 +18,7 @@ class HistoryFragment : Fragment() {
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: HistoryViewModel
-    private lateinit var adapter: PredictionsAdapter
+    private lateinit var predictionAdapter: PredictionsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,17 +37,27 @@ class HistoryFragment : Fragment() {
         setupViewModel()
         setupRecyclerViews()
         observeViewModel()
-        viewModel.getPredictionsByUserId("1")
+        val userId = "111"
+        viewModel.getPredictionsByUserId(userId)
     }
 
     private fun observeViewModel() {
-        viewModel.predictionsHistory.observe(viewLifecycleOwner){ predictions ->
-            adapter.setList(predictions)
-        }
-
         viewModel.isLoading.observe(viewLifecycleOwner){ isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
+
+        viewModel.predictionsHistory.observe(viewLifecycleOwner) { predictions ->
+            if (predictions.isNullOrEmpty()) {
+                binding.tvEmptyMessage.visibility = View.VISIBLE
+                binding.rvHistoryAnalisis.visibility = View.GONE
+            } else {
+                binding.tvEmptyMessage.visibility = View.GONE
+                binding.rvHistoryAnalisis.visibility = View.VISIBLE
+                predictionAdapter.setList(predictions)
+            }
+        }
+
+
 
 
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
@@ -58,16 +70,19 @@ class HistoryFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
     }
 
-    private fun setupRecyclerViews(){
-        adapter = PredictionsAdapter { item ->
-            val intent = Intent(requireContext(), DetailAnalisisFragment::class.java)
-            intent.putExtra("PREDICTION_ID", item.predictionId)
-            startActivity(intent)
+    private fun setupRecyclerViews() {
+        predictionAdapter = PredictionsAdapter { item ->
+            // Navigasi menggunakan NavController
+            val bundle = Bundle().apply {
+                putString("PREDICTION_ID", item.predictionId)
+            }
+            findNavController().navigate(R.id.action_historyFragment_to_detailAnalisisFragment, bundle)
         }
 
         binding.rvHistoryAnalisis.apply {
-            layoutManager = LinearLayoutManager(requireActivity())
-            adapter = adapter
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = predictionAdapter
+            setHasFixedSize(true)
         }
     }
 

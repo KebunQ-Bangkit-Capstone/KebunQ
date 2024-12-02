@@ -14,7 +14,7 @@ class PredictionsAdapter(
     class PredictionViewHolder(private val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: PredictionsItem){
             binding.apply {
-                tvItemHasilPrediksi.text = item.analysis
+                tvItemHasilPrediksi.text = item.diseaseName
                 tvItemTanggal.text = item.createdAt
                 Glide.with(itemView.context)
                     .load(item.temporaryImageUrl)
@@ -33,6 +33,7 @@ class PredictionsAdapter(
     fun setList(items: List<PredictionsItem>) {
         predictions.clear()
         predictions.addAll(items)
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: PredictionViewHolder, position: Int) {

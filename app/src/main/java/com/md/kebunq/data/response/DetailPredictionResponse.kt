@@ -19,6 +19,9 @@ data class DetailPredictionResponse(
 	@field:SerializedName("created_at")
 	val createdAt: String,
 
+	@field:SerializedName("disease_name")
+	val diseaseName: String,
+
 	@field:SerializedName("temporary_image_url")
 	val temporaryImageUrl: String,
 
@@ -32,5 +35,8 @@ data class DetailPredictionResponse(
 	val plantIndex: Int,
 
 	@field:SerializedName("article")
-	val article: String
+	val article: String,
+
+	@field:SerializedName("plant_name")
+	val plantName: String
 )

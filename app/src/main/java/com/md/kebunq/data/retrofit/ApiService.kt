@@ -8,9 +8,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("predictions/")
+    @GET("predictions")
     suspend fun getPredictionsByUserId(@Query("user_id") userId: String): ListPredictionResponse
 
     @GET("predictions/{id}")
-    suspend fun getDetailPrediction(@Path("id") id: String): Call<DetailPredictionResponse>
+    suspend fun getDetailPrediction(@Path("id") id: String): DetailPredictionResponse
 }

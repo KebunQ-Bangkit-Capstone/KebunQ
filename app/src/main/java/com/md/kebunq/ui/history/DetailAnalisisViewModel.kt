@@ -21,27 +21,21 @@ class DetailAnalisisViewModel (private val apiService: ApiService) : ViewModel()
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
-    fun getDetailPrediction(id: String){
+    fun getDetailPrediction(id: String) {
         _isLoading.value = true
         _error.value = null
 
         viewModelScope.launch {
             try {
-                val response = apiService.getDetailPrediction(id).execute()
-                if (response.isSuccessful){
-                    response.body()?.let {
-                        _detailPrediction.postValue(it)
-                    }?: run {
-                        _error.postValue("Tidak Ada Hasil")
-                    }
-                }else{
-                    _error.postValue("Error: ${response.code()} - ${response.message()}")
-                }
-            }catch (e: HttpException){
+                val response = apiService.getDetailPrediction(id)
+                _detailPrediction.postValue(response)
+            } catch (e: HttpException) {
                 _error.postValue("HttpException: ${e.message}")
-            }catch (e: IOException){
+            } catch (e: IOException) {
                 _error.postValue("IOException: ${e.message}")
-            }finally {
+            } catch (e: Exception) {
+                _error.postValue("Unexpected Error: ${e.message}")
+            } finally {
                 _isLoading.postValue(false)
             }
         }
