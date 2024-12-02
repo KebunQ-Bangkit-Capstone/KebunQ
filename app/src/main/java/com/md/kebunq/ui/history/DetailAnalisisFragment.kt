@@ -16,6 +16,8 @@ import com.md.kebunq.R
 import com.md.kebunq.data.response.DetailPredictionResponse
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentDetailAnalisisBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DetailAnalisisFragment : Fragment() {
     companion object {
@@ -65,9 +67,17 @@ class DetailAnalisisFragment : Fragment() {
         }
     }
 
+    fun formatDate(dateString: String): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
+        val date = inputFormat.parse(dateString)
+
+        val outputFormat = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale("id", "ID"))
+        return outputFormat.format(date)
+    }
     private fun updateUI(detail: DetailPredictionResponse) {
         binding.tvHasilAnalisis.text = detail.analysis
-        binding.tvCsTanggal.text = "${detail.createdAt} - ${detail.confidenceScore}"
+        val createAt = formatDate(detail.createdAt)
+        binding.tvCsTanggal.text = "${createAt} - CS ${detail.confidenceScore} %"
         binding.tvJenisTanaman.text = detail.plantName
 
         Glide.with(this)
