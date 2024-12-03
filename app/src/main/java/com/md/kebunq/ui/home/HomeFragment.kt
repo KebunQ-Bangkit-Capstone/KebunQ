@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.md.kebunq.R
 import com.md.kebunq.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -28,11 +29,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onDestroyView() {
