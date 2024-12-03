@@ -8,8 +8,12 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.md.kebunq.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_ambilGambarFragment"
+            app:destination="@id/navigation_ambil_gambar" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
@@ -25,7 +29,15 @@
         android:id="@+id/navigation_detail_analisis"
         android:name="com.md.kebunq.ui.history.DetailAnalisisFragment"
         android:label="Detail Analisis"
-        tools:layout="@layout/fragment_detail_analisis"/>
+        tools:layout="@layout/fragment_detail_analisis">
+        <argument
+            android:name="predictionResult"
+            app:argType="string" />
+        <argument
+            android:name="PREDICTION_ID"
+            app:argType="string" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_community"
@@ -44,4 +56,16 @@
         android:name="com.md.kebunq.ui.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings"/>
+
+    <fragment
+        android:id="@+id/navigation_ambil_gambar"
+        android:name="com.md.kebunq.ui.home.AmbilGambarFragment"
+        android:label="fragment_ambil_gambar"
+        tools:layout="@layout/fragment_ambil_gambar">
+        <action
+            android:id="@+id/actionAmbilGambarFragmentToDetailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis" />
+
+    </fragment>
+
 </navigation>
