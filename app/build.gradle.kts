@@ -53,14 +53,13 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.preference)
     implementation(libs.firebase.auth)
+    implementation(libs.androidx.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.material.v190)
 
     //firebase
-    implementation(libs.play.services.auth)
-
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
