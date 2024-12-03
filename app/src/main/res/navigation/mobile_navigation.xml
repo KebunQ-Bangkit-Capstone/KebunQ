@@ -15,7 +15,17 @@
         android:id="@+id/navigation_history"
         android:name="com.md.kebunq.ui.history.HistoryFragment"
         android:label="@string/History"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/action_historyFragment_to_detailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detail_analisis"
+        android:name="com.md.kebunq.ui.history.DetailAnalisisFragment"
+        android:label="Detail Analisis"
+        tools:layout="@layout/fragment_detail_analisis"/>
 
     <fragment
         android:id="@+id/navigation_community"
