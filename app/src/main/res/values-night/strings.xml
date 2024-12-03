@@ -8,4 +8,7 @@
     <string name="or">or</string>
     <string name="btn_login_google">Login with Google</string>
     <string name="btn_login_facebook">Login with Facebook</string>
+    <string name="your_web_client_id">269618306064-k9dcbc4tornsn273gkjj2quu7kv6b8qt.apps.googleusercontent.com</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>
