@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "269618306064-u6hpiek3eero7ct2icifgo3uiuikhi6l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.md.kebunq",
+            "certificate_hash": "20e48a77ac8a45ad62b0e60b380e2e95514e5443"
+          }
+        },
+        {
           "client_id": "269618306064-k9dcbc4tornsn273gkjj2quu7kv6b8qt.apps.googleusercontent.com",
           "client_type": 3
         }
