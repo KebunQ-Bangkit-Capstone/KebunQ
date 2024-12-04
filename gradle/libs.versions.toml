@@ -1,6 +1,7 @@
 [versions]
 agp = "8.6.1"
 converterGson = "2.9.0"
+facebookLogin = "latest.release"
 firebaseBom = "33.6.0"
 kotlin = "1.9.0"
 coreKtx = "1.15.0"
@@ -29,6 +30,7 @@ activity = "1.9.3"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+facebook-login = { module = "com.facebook.android:facebook-login", version.ref = "facebookLogin" }
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
