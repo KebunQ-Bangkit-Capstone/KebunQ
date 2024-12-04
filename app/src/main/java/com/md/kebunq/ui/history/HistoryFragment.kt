@@ -1,6 +1,5 @@
 package com.md.kebunq.ui.history
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.md.kebunq.R
 import com.md.kebunq.databinding.FragmentHistoryBinding
 
@@ -33,12 +33,11 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
         setupViewModel()
         setupRecyclerViews()
         observeViewModel()
-        val userId = "111"
-        viewModel.getPredictionsByUserId(userId)
+        viewModel.getPredictionsByUserId(userId.toString())
     }
 
     private fun observeViewModel() {

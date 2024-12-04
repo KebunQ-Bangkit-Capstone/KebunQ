@@ -75,7 +75,7 @@ class DetailAnalisisFragment : Fragment() {
         return outputFormat.format(date)
     }
     private fun updateUI(detail: DetailPredictionResponse) {
-        binding.tvHasilAnalisis.text = detail.analysis
+        binding.tvHasilAnalisis.text = detail.diseaseName
         val createAt = formatDate(detail.createdAt)
         binding.tvCsTanggal.text = "${createAt} - CS ${detail.confidenceScore} %"
         binding.tvJenisTanaman.text = detail.plantName
@@ -99,66 +99,6 @@ class DetailAnalisisFragment : Fragment() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
     }
-
-
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-////        val sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
-////        sectionsPagerAdapter.setArguments(args)
-////        val viewPager: ViewPager2 = view.findViewById(R.id.view_pager)
-////        viewPager.adapter = sectionsPagerAdapter
-////        val tabs: TabLayout = view.findViewById(R.id.tabs)
-////        TabLayoutMediator(tabs, viewPager) { tab, position ->
-////            tab.text = resources.getString(TAB_TITLES[position])
-////        }.attach()
-//
-//        val predictionId = arguments?.getString("PREDICTION_ID") ?: ""
-//        if (predictionId.isEmpty()) {
-//            Toast.makeText(context, "Prediction ID not found", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//        viewModel.getDetailPrediction(predictionId)
-//        viewModel.detailPrediction.observe(viewLifecycleOwner){ detail ->
-//            val args = Bundle().apply {
-//                putString("ANALYSIS", detail.analysis)
-//                putString("TREATMENT", detail.treatment)
-//            }
-//            val sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
-//            sectionsPagerAdapter.setArguments(args)
-//
-//            val viewPager: ViewPager2 = view.findViewById(R.id.view_pager)
-//            viewPager.adapter = sectionsPagerAdapter
-//
-//            val tabs: TabLayout = view.findViewById(R.id.tabs)
-//            TabLayoutMediator(tabs, viewPager) { tab, position ->
-//                tab.text = resources.getString(TAB_TITLES[position])
-//            }.attach()
-//
-//            binding.tvHasilAnalisis.text = detail.analysis
-//            val csTanggal = "${detail.createdAt} - ${detail.confidenceScore}"
-//            binding.tvCsTanggal.text = csTanggal
-//            binding.tvJenisTanaman.text = detail.plantName
-//
-//            Glide.with(this)
-//                .load(detail.temporaryImageUrl)
-//                .into(binding.imgHasilAnalis)
-//
-//        }
-//
-////        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-////            binding.progressBar.isVisible = isLoading
-////        }
-//
-//        viewModel.error.observe(viewLifecycleOwner) { error ->
-//            if (error != null) {
-//                Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
