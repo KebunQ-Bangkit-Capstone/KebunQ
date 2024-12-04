@@ -65,5 +65,8 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
-    implementation (libs.facebook.login)
+    implementation ("com.facebook.android:facebook-android-sdk:16.1.3")
+    implementation ("com.facebook.android:facebook-login:17.0.2")
+
+
 }
