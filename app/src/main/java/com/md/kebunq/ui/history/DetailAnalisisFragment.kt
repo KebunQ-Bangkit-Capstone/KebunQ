@@ -75,7 +75,7 @@ class DetailAnalisisFragment : Fragment() {
         return outputFormat.format(date)
     }
     private fun updateUI(detail: DetailPredictionResponse) {
-        binding.tvHasilAnalisis.text = detail.analysis
+        binding.tvHasilAnalisis.text = detail.diseaseName
         val createAt = formatDate(detail.createdAt)
         binding.tvCsTanggal.text = "${createAt} - CS ${detail.confidenceScore}%"
         binding.tvJenisTanaman.text = detail.plantName

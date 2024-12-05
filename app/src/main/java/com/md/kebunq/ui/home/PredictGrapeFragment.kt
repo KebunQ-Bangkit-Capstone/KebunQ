@@ -19,7 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.md.kebunq.R
 import com.md.kebunq.data.response.PredictionResponse
 import com.md.kebunq.data.retrofit.ApiConfig
-import com.md.kebunq.databinding.FragmentAmbilGambarBinding
+import com.md.kebunq.databinding.FragmentPredictionBinding
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -28,9 +28,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
-class AmbilGambarFragment : Fragment() {
+class PredictGrapeFragment : Fragment(R.layout.fragment_prediction) {
 
-    private var _binding: FragmentAmbilGambarBinding? = null
+    private var _binding: FragmentPredictionBinding? = null
     private val binding get() = _binding!!
 
     private var currentImageUri: Uri? = null
@@ -61,7 +61,7 @@ class AmbilGambarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAmbilGambarBinding.inflate(inflater, container, false)
+        _binding = FragmentPredictionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -107,8 +107,8 @@ class AmbilGambarFragment : Fragment() {
         }
 
         val file = currentImageFile!!
-        val userId = "111"  // Contoh user ID, ganti dengan ID pengguna sesungguhnya
-        val plantIndex = "1"  // Jika backend belum mendukung inferensi otomatis, tentukan nilai awal
+        val userId = "111"  // Ubah setelah fitur autentikasi
+        val plantIndex = "1"  // Index tanaman anggur
 
         // Menampilkan loading
         binding.progressBar.visibility = View.VISIBLE
@@ -162,7 +162,7 @@ class AmbilGambarFragment : Fragment() {
         val bundle = Bundle().apply {
             putString("PREDICTION_ID", predictionResult)
         }
-        findNavController().navigate(R.id.actionAmbilGambarFragmentToDetailAnalisisFragment, bundle)
+        findNavController().navigate(R.id.actionPredictGrapeFragmentToDetailAnalisisFragment, bundle)
 
     }
 
@@ -181,6 +181,7 @@ class AmbilGambarFragment : Fragment() {
         )
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
