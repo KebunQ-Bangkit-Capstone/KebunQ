@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FacebookSdk.sdkInitialize(applicationContext)
+        FacebookSdk.setClientToken("42cb875ab9a863466ef753f30020653a")
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // Initialize Firebase Auth
