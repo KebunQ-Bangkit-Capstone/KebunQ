@@ -39,6 +39,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
+    <string name="artikel">Baca Artikel</string>
 
 
 </resources>

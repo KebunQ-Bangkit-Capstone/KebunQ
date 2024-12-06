@@ -67,7 +67,7 @@ class DetailAnalisisFragment : Fragment() {
         }
     }
 
-    fun formatDate(dateString: String): String {
+    private fun formatDate(dateString: String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
         val date = inputFormat.parse(dateString)
 
