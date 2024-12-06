@@ -61,12 +61,16 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation("com.google.code.gson:gson:2.11.0")
+    implementation(libs.logging.interceptor)
 //    implementation(libs.play.services.auth)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     implementation ("com.facebook.android:facebook-android-sdk:16.1.3")
     implementation ("com.facebook.android:facebook-login:17.0.2")
+
+
 
 
 }

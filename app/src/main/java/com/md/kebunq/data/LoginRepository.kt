@@ -1,6 +1,6 @@
-package com.md.kebunq.ui.data
+package com.md.kebunq.data
 
-import com.md.kebunq.ui.data.model.LoggedInUser
+import com.md.kebunq.data.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and
