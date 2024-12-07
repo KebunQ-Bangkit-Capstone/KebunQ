@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:padding="0dp">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_item_history"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            tools:src="@tools:sample/avatars"
+            app:shapeAppearanceOverlay="@style/RoundedCornerImage"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="Image with rounded corners"/>
+
+
+
+        <TextView
+            android:id="@+id/tv_item_hasilPrediksi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/img_item_history"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:lineSpacingExtra="5sp"
+            android:gravity="center_vertical"
+            card_view:layout_constraintEnd_toStartOf="@+id/chevron_right"
+            card_view:layout_constraintHorizontal_bias="0.101"
+            card_view:layout_constraintStart_toEndOf="@+id/img_item_history"
+            card_view:layout_constraintTop_toTopOf="@+id/img_item_history"
+            tools:text="@string/hasil_prediksi" />
+
+        <TextView
+            android:id="@+id/tv_item_tanggal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:textAppearance="@style/subheadline"
+            android:lineSpacingExtra="4sp"
+            android:translationY="-1.8sp"
+            android:gravity="top"
+            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_hasilPrediksi"
+            card_view:layout_constraintStart_toStartOf="@+id/tv_item_hasilPrediksi"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_hasilPrediksi"
+            card_view:layout_constraintVertical_bias="0.0"
+            tools:text="@string/tanggal_prediksi" />
+
+        <ImageView
+            android:id="@+id/chevron_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            android:src="@drawable/baseline_chevron_right_24"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
