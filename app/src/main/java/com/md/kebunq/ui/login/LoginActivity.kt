@@ -30,7 +30,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.md.kebunq.MainActivity
 import com.md.kebunq.R
-import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
 
@@ -58,7 +57,8 @@ class LoginActivity : AppCompatActivity() {
                 listOf("email", "public_profile")
             )
         }
-        LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult>{
+        LoginManager.getInstance().registerCallback(callbackManager, object :
+            FacebookCallback<LoginResult> {
             override fun onCancel() {
                 Log.d(TAG, "facebook:onCancel")
             }
