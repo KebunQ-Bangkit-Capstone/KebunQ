@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="tv_login">Hello, Welcome Back!</string>
+    <string name="tv_register">Hello, Welcome to KebunQ!</string>
     <string name="username">Username</string>
-    <string name="email">Email\n</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="btn_login">Login</string>
+    <string name="btn_Register">Register</string>
     <string name="or">or</string>
     <string name="btn_login_google">Login with Google</string>
     <string name="btn_login_facebook">Login with Facebook</string>
+    <string name="btn_facebook">Register with Facebook</string>
+    <string name="btn_google">Register with Google</string>
     <string name="your_web_client_id">269618306064-k9dcbc4tornsn273gkjj2quu7kv6b8qt.apps.googleusercontent.com</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="title_welcome_page">Selamat Datang di KebunQ!</string>
     <string name="message_welcome_page">Jangan biarkan masalah kesehatan tanaman mengurangi hasil panen Anda. Dengan KebunQ, identifikasi gejala, temukan solusi, dan rawat tanaman Anda dengan lebih baik.</string>
+    <string name="facebook_app_id">925711039106788</string>
 </resources>

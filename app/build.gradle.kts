@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.google.gms.google.services)
+    id("com.google.gms.google-services")
 }
 
 buildscript{
@@ -66,16 +66,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation("com.google.code.gson:gson:2.11.0")
-    implementation(libs.logging.interceptor)
-//    implementation(libs.play.services.auth)
-    implementation(libs.androidx.credentials)
-    implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.googleid)
-    implementation ("com.facebook.android:facebook-android-sdk:16.1.3")
-    implementation ("com.facebook.android:facebook-login:17.0.2")
+    implementation(libs.material.v190)
 
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -94,10 +85,6 @@ dependencies {
 
     //facebook
     implementation("com.facebook.android:facebook-android-sdk:15.2.0")
-
-
-
-
 
 
 }
