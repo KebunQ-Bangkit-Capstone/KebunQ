@@ -9,16 +9,12 @@ import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.md.kebunq.MainActivity
-import com.md.kebunq.R
 import com.md.kebunq.databinding.ActivityWelcomeBinding
 import com.md.kebunq.ui.login.LoginActivity
-import com.md.kebunq.ui.register.RegisterFragment
-
+import com.md.kebunq.ui.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
@@ -28,13 +24,16 @@ class WelcomeActivity : AppCompatActivity() {
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
         if (isLoggedIn) {
+            // Pengguna sudah login, arahkan ke HomeActivity
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
+            finish() // Tutup WelcomeActivity agar pengguna tidak bisa kembali ke sini
         }
 
         setupView()
@@ -42,7 +41,7 @@ class WelcomeActivity : AppCompatActivity() {
         playAnimation()
         Log.d("WelcomeActivity", "TitleTextView: ${binding.titleTextView}")
         Log.d("WelcomeActivity", "LoginButton: ${binding.loginButton}")
-        Log.d("WelcomeActivity", "SignupButton: ${binding.signupButton}")
+        Log.d("WelcomeActivity", "SignupButton: ${binding.btnRegister}")
         Log.d("WelcomeActivity", "DescTextView: ${binding.descTextView}")
 
     }
@@ -65,23 +64,23 @@ class WelcomeActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        binding.signupButton.setOnClickListener {
-            startActivity(Intent(this, RegisterFragment::class.java))
+        binding.btnRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+            Toast.makeText(this, "Register", Toast.LENGTH_SHORT).show()
         }
     }
 
     private lateinit var imageAnimator: ObjectAnimator
     private fun playAnimation() {
-        imageAnimator =
-            ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
-                duration = 6000
-                repeatCount = ObjectAnimator.INFINITE
-                repeatMode = ObjectAnimator.REVERSE
-            }
+        imageAnimator =  ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }
         imageAnimator.start()
 
         val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(100)
-        val signup = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(100)
+        val signup = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA, 1f).setDuration(100)
         val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
         val desc = ObjectAnimator.ofFloat(binding.descTextView, View.ALPHA, 1f).setDuration(100)
 
@@ -94,11 +93,9 @@ class WelcomeActivity : AppCompatActivity() {
             start()
         }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         imageAnimator.cancel()
     }
 
 }
-

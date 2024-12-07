@@ -20,7 +20,6 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun createUser(user: User) {
         _error.value = null
-
         viewModelScope.launch {
             try {
                 val response = userRepository.createUser(user)

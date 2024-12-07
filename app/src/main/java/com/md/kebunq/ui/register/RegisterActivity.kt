@@ -3,28 +3,23 @@ package com.md.kebunq.ui.register
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
-import androidx.fragment.app.FragmentManager.TAG
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.FacebookSdk
 import com.facebook.GraphRequest
-import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.facebook.login.widget.LoginButton
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -38,11 +33,11 @@ import com.google.firebase.ktx.Firebase
 import com.md.kebunq.MainActivity
 import com.md.kebunq.R
 import com.md.kebunq.data.User
+import com.md.kebunq.data.UserRepository
+import com.md.kebunq.data.UserViewModel
+import com.md.kebunq.data.UserViewModelFactory
 import com.md.kebunq.data.retrofit.ApiConfig
-import com.md.kebunq.data.retrofit.ApiService
 import com.md.kebunq.databinding.ActivityRegisterBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
@@ -51,86 +46,34 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var callbackManager: CallbackManager
+    private lateinit var registerViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         FacebookSdk.setClientToken(getString(R.string.facebook_client_token))
         FacebookSdk.sdkInitialize(applicationContext)
 
+
+        val repository = UserRepository(ApiConfig.getApiService())
+        val viewModelFactory = UserViewModelFactory(repository)
+        registerViewModel = ViewModelProvider(this, viewModelFactory)[UserViewModel::class.java]
         callbackManager = CallbackManager.Factory.create()
         binding.btnFacebook.setOnClickListener{
             registerFacebook()
-
         }
 
-        // Initialize Firebase Auth
         auth = Firebase.auth
-
         binding.btnRegister.setOnClickListener{
             registerUserNativeWithFirebase()
         }
-
         binding.signInButton.setOnClickListener {
             signIn()
         }
     }
-
-//    private fun registerFacebook() {
-//        LoginManager.getInstance().logInWithReadPermissions(
-//            this,
-//            listOf("public_profile", "email")
-//        )
-//
-//        LoginManager.getInstance().registerCallback( callbackManager,
-//            object : FacebookCallback<LoginResult> {
-//                override fun onSuccess(result: LoginResult) {
-//                    val accessToken = result.accessToken
-//                    val credential = FacebookAuthProvider.getCredential(result.accessToken.token)
-//
-//                    auth.signInWithCredential(credential)
-//                        .addOnCompleteListener { task ->
-//                            if (task.isSuccessful) {
-//                                val graphRequest = GraphRequest.newMeRequest(accessToken) { jsonObject, _ ->
-//                                    val email = jsonObject?.getString("email")
-//                                    startActivity(
-//                                        Intent(
-//                                            this@RegisterActivity,
-//                                            MainActivity::class.java
-//                                        )
-//                                    )
-//                                    finish()
-//                                }
-//                                val parameters = Bundle()
-//                                parameters.putString("fields", "email")
-//                                graphRequest.parameters = parameters
-//                                graphRequest.executeAsync()
-//                                Log.d(TAG, "signInWithCredential:success")
-//                                val user = auth.currentUser
-//                                updateUI(user)
-//                            } else {
-//                                Toast.makeText(this@RegisterActivity, "Register Gagal", Toast.LENGTH_SHORT).show()
-//                                // If sign in fails, display a message to the user.
-//                                Log.w(TAG, "signInWithCredential:failure", task.exception)
-//                                Toast.makeText(baseContext, "Authentication failed.",
-//                                    Toast.LENGTH_SHORT).show()
-//                                updateUI(null)
-//                            }
-//                        }
-//                }
-//
-//                override fun onCancel() {
-//                    Toast.makeText(this@RegisterActivity, "Register Dibatalkan", Toast.LENGTH_SHORT).show()
-//                }
-//
-//                override fun onError(error: FacebookException) {
-//                    Toast.makeText(this@RegisterActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        )
-//    }
 
     private fun registerFacebook() {
         // Memulai proses login Facebook
@@ -139,7 +82,6 @@ class RegisterActivity : AppCompatActivity() {
             listOf("public_profile", "email")
         )
 
-        // Mengatur callback
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult) {
@@ -160,15 +102,20 @@ class RegisterActivity : AppCompatActivity() {
 
                                         // Simpan data pengguna ke API jika diperlukan
                                         val user = auth.currentUser
-                                        sendUserDataToApi(
-                                            username = name,
-                                            userId = user?.uid ?: "",
-                                            userEmail = email
-                                        )
-
-                                        // Beralih ke MainActivity
-                                        startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                                        val userId = user?.uid ?: ""
+                                        registerViewModel.createUser(User(userId, email, name))
+                                        updateUI(user)
                                         finish()
+                                        Toast.makeText(
+                                            this@RegisterActivity,
+                                            "Registration successful",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+                                        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", true)
+                                        val editor = sharedPreferences.edit()
+                                        editor.putBoolean("isLoggedIn", isLoggedIn)
+
                                     } catch (e: Exception) {
                                         Log.e(TAG, "Error parsing Facebook user data", e)
                                         Toast.makeText(
@@ -213,8 +160,6 @@ class RegisterActivity : AppCompatActivity() {
         )
     }
 
-
-    @Deprecated("This method has been deprecated in favor of using the Activity Result API\n      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt\n      contracts for common intents available in\n      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for\n      testing, and allow receiving results in separate, testable classes independent from your\n      activity. Use\n      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}\n      with the appropriate {@link ActivityResultContract} and handling the result in the\n      {@link ActivityResultCallback#onActivityResult(Object) callback}.")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         callbackManager.onActivityResult(requestCode, resultCode, data)
@@ -232,27 +177,20 @@ class RegisterActivity : AppCompatActivity() {
                     val userEmail = firebaseUser?.email ?: ""
                     Log.d(TAG, "createUserWithEmail:success")
                     val username = binding.inputUsername.text.toString()
-                    sendUserDataToApi(username, userId, userEmail)
+                    val saveUser = User(userId, userEmail, username)
+                    registerViewModel.createUser(saveUser)
+                    val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+                    val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", true)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isLoggedIn", isLoggedIn)
+                    editor.apply()
                     updateUI(user)
+
                 } else {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     updateUI(null)
                 }
             }
-    }
-
-    private fun sendUserDataToApi(username: String, userId: String?, userEmail: String?) {
-        val user = User(userId.toString(), userEmail.toString(), username)
-        val apiService = ApiConfig.getApiService()
-
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = apiService.createUser(user)
-                Log.d(TAG, "User data sent to API: $response")
-            } catch (e: Exception) {
-                Log.e(TAG, "Error sending user data to API", e)
-            }
-        }
     }
 
 
@@ -318,7 +256,12 @@ class RegisterActivity : AppCompatActivity() {
                     val userId = user?.uid ?: ""
                     val userEmail = user?.email ?: ""
                     val username = user?.displayName ?: ""
-                    sendUserDataToApi(username, userId, userEmail)
+                    registerViewModel.createUser(User(userId, userEmail, username))
+                    val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+                    val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", true)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isLoggedIn", isLoggedIn)
+                    editor.apply()
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -329,16 +272,18 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
-        if (currentUser != null) {
-            startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
-            finish()
-        }
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        updateUI(currentUser)
+        if (currentUser != null) {
+            updateUI(currentUser)
+        }
     }
 
     companion object {

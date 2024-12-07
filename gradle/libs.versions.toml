@@ -1,6 +1,7 @@
 [versions]
 agp = "8.6.1"
 credentials = "1.2.2"
+converterGson = "2.10.1"
 googleid = "1.1.0"
 kotlin = "1.9.0"
 coreKtx = "1.15.0"
@@ -24,7 +25,9 @@ googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.1.0"
 playServicesAuth = "21.1.1"
 activity = "1.9.3"
-
+firebaseBom = "33.7.0"
+facebookLogin = "17.0.2"
+firebaseAuthKtx = "23.1.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
@@ -51,9 +54,6 @@ androidx-annotation = { group = "androidx.annotation", name = "annotation", vers
 androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
-androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
-androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
-googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 

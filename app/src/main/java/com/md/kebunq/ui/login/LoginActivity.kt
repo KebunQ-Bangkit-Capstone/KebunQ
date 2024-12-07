@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         FacebookSdk.sdkInitialize(applicationContext)
         FacebookSdk.setClientToken("42cb875ab9a863466ef753f30020653a")
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -92,6 +93,10 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener{ task ->
                 if (task.isSuccessful){
                     val user = auth.currentUser
+                    val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isLoggedIn", true)
+                    editor.apply()
                     updateUI(user)
                 } else {
                     Toast.makeText(
@@ -110,6 +115,10 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     Log.d("FirebaseAuth", "Login successful: ${user?.displayName}")
+                    val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isLoggedIn", true)
+                    editor.apply()
                     updateUI(user)
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -181,6 +190,10 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user: FirebaseUser? = auth.currentUser
+                    val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isLoggedIn", true)
+                    editor.apply()
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -192,7 +205,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
             finish()
         }
     }
@@ -209,7 +224,9 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        updateUI(currentUser)
+        if (currentUser != null){
+            updateUI(currentUser)
+        }
     }
 
     companion object {

@@ -14,8 +14,5 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="Theme.KebunQ.Launcher" parent="Theme.Material3.DayNight">
-        <!-- Gaya layar pembuka -->
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
+
 </resources>
