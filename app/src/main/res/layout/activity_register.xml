@@ -50,6 +50,7 @@
             app:layout_constraintStart_toStartOf="@+id/tv_hello"
             app:layout_constraintTop_toBottomOf="@+id/tv_hello">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_username"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -67,6 +68,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tf_username">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -83,6 +85,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tf_email"
             app:endIconMode="password_toggle">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"/>
