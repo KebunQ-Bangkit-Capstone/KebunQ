@@ -30,6 +30,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.md.kebunq.MainActivity
 import com.md.kebunq.R
+import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
 
@@ -73,10 +74,31 @@ class LoginActivity : AppCompatActivity() {
         },
         )
 
+        binding.btnLogin.setOnClickListener{
+            loginWithEmalAndPassword()
+        }
         binding.signInButton.setOnClickListener{
             signIn()
         }
 
+    }
+
+    private fun loginWithEmalAndPassword() {
+        val email = binding.loginEmail.text.toString()
+        val password = binding.loginEmail.text.toString()
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener{ task ->
+                if (task.isSuccessful){
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    Toast.makeText(
+                        baseContext,
+                        "User Belum Terdaftar, Silahkan Register",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
     }
 
     private fun handleFacebookAccessToken(accessToken: AccessToken) {
