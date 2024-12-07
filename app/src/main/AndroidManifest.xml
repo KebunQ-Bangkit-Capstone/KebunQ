@@ -5,7 +5,9 @@
     <queries>
         <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
     </queries>
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".KebunQ"
         android:allowBackup="true"
@@ -17,8 +19,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KebunQ"
         tools:targetApi="31">
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+        <activity
+            android:name=".ui.SplashScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.welcome.WelcomeActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -27,21 +41,25 @@
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
+
                 <!-- Launch app -->
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
+
                 <!-- Handle Facebook Login Redirect -->
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:scheme="@string/fb_login_protocol_scheme"
-                    android:host="authorize" />
+                    android:host="authorize"
+                    android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

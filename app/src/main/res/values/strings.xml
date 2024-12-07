@@ -42,9 +42,11 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
 
-<!--    facebook-->
-    <string name="facebook_app_id">1116954409844822</string>
-    <string name="fb_login_protocol_scheme">fb1116954409844822</string>
-    <string name="facebook_client_token">42cb875ab9a863466ef753f30020653a</string>
+    <!--    facebook-->
+    <string name="facebook_app_id"> 925711039106788</string>
+    <string name="fb_login_protocol_scheme">fb925711039106788</string>
+    <string name="facebook_client_token">fce6ebbfa8587d3e10ae1d23d8433d1b</string>
+    <string name="title_welcome_page">Selamat Datang di KebunQ!</string>
+    <string name="message_welcome_page">Jangan biarkan masalah kesehatan tanaman mengurangi hasil panen Anda. Dengan KebunQ, identifikasi gejala, temukan solusi, dan rawat tanaman Anda dengan lebih baik.</string>
 
 </resources>

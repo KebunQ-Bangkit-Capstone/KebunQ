@@ -11,4 +11,6 @@
     <string name="your_web_client_id">269618306064-k9dcbc4tornsn273gkjj2quu7kv6b8qt.apps.googleusercontent.com</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="title_welcome_page">Selamat Datang di KebunQ!</string>
+    <string name="message_welcome_page">Jangan biarkan masalah kesehatan tanaman mengurangi hasil panen Anda. Dengan KebunQ, identifikasi gejala, temukan solusi, dan rawat tanaman Anda dengan lebih baik.</string>
 </resources>
