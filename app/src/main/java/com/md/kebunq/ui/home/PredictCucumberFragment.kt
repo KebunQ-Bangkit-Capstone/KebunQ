@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.md.kebunq.R
 import com.md.kebunq.data.response.PredictionResponse
 import com.md.kebunq.data.retrofit.ApiConfig
@@ -107,7 +108,8 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
         }
 
         val file = currentImageFile!!
-        val userId = "111"  // Ubah setelah fitur autentikasi
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+//        val userId = "111"  // Ubah setelah fitur autentikasi
         val plantIndex = "0"  // Index tanaman timun
 
         // Menampilkan loading
@@ -122,7 +124,7 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
         )
 
         // Panggil API prediksi
-        apiService.predict(userId, plantIndex, imagePart).enqueue(object : Callback<PredictionResponse> {
+        apiService.predict(userId.toString(), plantIndex, imagePart).enqueue(object : Callback<PredictionResponse> {
             override fun onResponse(
                 call: Call<PredictionResponse>,
                 response: Response<PredictionResponse>
