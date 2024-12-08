@@ -35,6 +35,9 @@ activity = "1.9.3"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.1.0"
 foundationAndroid = "1.7.5"
+circleimageview = "2.1.0"
+loggingInterceptor = "4.11.0"
+viewpager2 = "1.1.0"
 
 
 [libraries]
