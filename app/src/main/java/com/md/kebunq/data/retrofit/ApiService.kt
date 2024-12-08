@@ -1,5 +1,6 @@
 package com.md.kebunq.data.retrofit
 
+import com.md.kebunq.data.response.DiseasesResponse
 import com.md.kebunq.data.User
 import com.md.kebunq.data.response.CreateUserResponse
 import retrofit2.http.Body
@@ -17,14 +18,25 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 
 interface ApiService {
+    @GET("diseases/")
+    fun getDiseasesByPlant(
+        @Query("plant_index") plantId: String
+    ): Call<DiseasesResponse>
     @POST("users")
     suspend fun createUser(@Body user: User): CreateUserResponse
     @GET("users/{id}")
     suspend fun getUserById(@Path("id") id: String): GetOneUserResponse
 
+    @GET("diseases/{id_plant}_{id_disease}")
+    fun getDiseaseById(
+        @Path("id_plant") plantId: String,
+        @Path("id_disease") diseaseId: String
+    ): Call<DiseasesResponse>
     @GET("predictions")
     suspend fun getPredictionsByUserId(@Query("user_id") userId: String): ListPredictionResponse
 
+    @GET("diseases/all")
+    fun getAllDiseases(): Call<List<DiseasesResponse>>
     @GET("predictions/{id}")
     suspend fun getDetailPrediction(@Path("id") id: String): DetailPredictionResponse
 

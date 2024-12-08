@@ -49,19 +49,68 @@
         android:id="@+id/navigation_community"
         android:name="com.md.kebunq.ui.community.CommunityFragment"
         android:label="@string/community"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_community" />
 
     <fragment
         android:id="@+id/navigation_list_penyakit"
         android:name="com.md.kebunq.ui.listPenyakit.ListPenyakitFragment"
         android:label="@string/list_penyakit"
-        tools:layout="@layout/fragment_list_penyakit"/>
+        tools:layout="@layout/fragment_list_penyakit">
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_cucumberFragment"
+            app:destination="@id/navigation_cucumber" />
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_grapeFragment"
+            app:destination="@id/navigation_grape" />
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_tomatoFragment"
+            app:destination="@id/navigation_tomato" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.md.kebunq.ui.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings"/>
+
+    <fragment
+        android:id="@+id/navigation_cucumber"
+        android:name="com.md.kebunq.ui.listPenyakit.CucumberFragment"
+        android:label="Cucumber"
+        tools:layout="@layout/fragment_cucumber">
+        <action
+            android:id="@+id/action_cucumberFragment_to_detailPenyakitFragment"
+            app:destination="@id/navigation_detail_penyakit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_grape"
+        android:name="com.md.kebunq.ui.listPenyakit.GrapeFragment"
+        android:label="Grape"
+        tools:layout="@layout/fragment_grape">
+        <action
+            android:id="@+id/action_grapeFragment_to_detailPenyakitFragment"
+            app:destination="@id/navigation_detail_penyakit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_tomato"
+        android:name="com.md.kebunq.ui.listPenyakit.TomatoFragment"
+        android:label="Grape"
+        tools:layout="@layout/fragment_tomato">
+        <action
+            android:id="@+id/action_tomatoFragment_to_detailPenyakitFragment"
+            app:destination="@id/navigation_detail_penyakit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detail_penyakit"
+        android:name="com.md.kebunq.ui.listPenyakit.DetailPenyakitFragment"
+        android:label="Detail Penyakit" >
+        <argument
+            android:name="disease_item"
+            app:argType="com.md.kebunq.data.response.DiseasesItem" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_prediksi_anggur"

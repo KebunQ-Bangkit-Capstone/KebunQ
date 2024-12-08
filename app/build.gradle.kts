@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
     alias(libs.plugins.google.gms.google.services)
+    id("kotlin-parcelize")
 }
 
 buildscript{
@@ -44,7 +45,6 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        buildConfig = true
     }
 }
 
@@ -65,6 +65,15 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx.v261)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.0")
+    implementation(libs.circleimageview)
+
+    implementation(libs.glide)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
