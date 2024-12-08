@@ -12,7 +12,6 @@ data class DiseasesResponse(
 
 @Parcelize
 data class DiseasesItem(
-
 	@field:SerializedName("treatment")
 	val treatment: String,
 
@@ -21,6 +20,9 @@ data class DiseasesItem(
 
 	@field:SerializedName("description")
 	val description: String,
+
+	@field:SerializedName("disease_name")
+	val diseaseName: String,
 
 	@field:SerializedName("temporary_image_url")
 	val temporaryImageUrl: String,
@@ -35,5 +37,8 @@ data class DiseasesItem(
 	val plantIndex: Int,
 
 	@field:SerializedName("article")
-	val article: String
+	val article: String,
+
+	@field:SerializedName("plant_name")
+	val plantName: String
 ) : Parcelable
