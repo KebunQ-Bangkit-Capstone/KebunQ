@@ -4,6 +4,7 @@ import com.md.kebunq.data.User
 import com.md.kebunq.data.response.CreateUserResponse
 import retrofit2.http.Body
 import com.md.kebunq.data.response.DetailPredictionResponse
+import com.md.kebunq.data.response.GetOneUserResponse
 import com.md.kebunq.data.response.ListPredictionResponse
 import com.md.kebunq.data.response.PredictionResponse
 import retrofit2.Call
@@ -19,7 +20,8 @@ interface ApiService {
     @POST("users")
     suspend fun createUser(@Body user: User): CreateUserResponse
     @GET("users/{id}")
-    suspend fun getUserById(@Path("id") id: String): User
+    suspend fun getUserById(@Path("id") id: String): GetOneUserResponse
+
     @GET("predictions")
     suspend fun getPredictionsByUserId(@Query("user_id") userId: String): ListPredictionResponse
 
