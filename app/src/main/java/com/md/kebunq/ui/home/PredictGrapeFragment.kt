@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -130,8 +131,13 @@ class PredictGrapeFragment : Fragment(R.layout.fragment_prediction) {
             override fun onResponse(
                 call: Call<PredictionResponse>,
                 response: Response<PredictionResponse>
+
             ) {
                 binding.progressBar.visibility = View.GONE
+
+                println(response.isSuccessful)
+                println(response.body())
+
                 if (response.isSuccessful && response.body() != null) {
                     val predictionResponse = response.body()!!
 
