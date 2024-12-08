@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_predictTomatoFragment"
             app:destination="@id/navigation_prediksi_tomato" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis" />
     </fragment>
 
     <fragment

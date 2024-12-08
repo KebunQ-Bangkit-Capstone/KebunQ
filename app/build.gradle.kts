@@ -81,6 +81,7 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.preference)
     implementation(libs.firebase.auth)
+    implementation(libs.androidx.foundation.android)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.androidx.activity)
     testImplementation(libs.junit)
