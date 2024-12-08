@@ -41,7 +41,7 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
     ) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK && currentImageUri != null) {
             binding.ivFotoDeteksi.setImageURI(currentImageUri)
-            currentImageFile = uriToFile(currentImageUri!!, requireContext())
+            currentImageFile = uriToFile(currentImageUri!!, requireContext()).reduceFileImage()
         }
     }
 
@@ -51,7 +51,7 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
-                currentImageFile = uriToFile(uri, requireContext())
+                currentImageFile = uriToFile(uri, requireContext()).reduceFileImage()
                 binding.ivFotoDeteksi.setImageURI(uri)
             }
         }

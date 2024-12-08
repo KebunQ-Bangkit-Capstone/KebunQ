@@ -41,7 +41,7 @@ class PredictGrapeFragment : Fragment(R.layout.fragment_prediction) {
     ) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK && currentImageUri != null) {
             binding.ivFotoDeteksi.setImageURI(currentImageUri)
-            currentImageFile = uriToFile(currentImageUri!!, requireContext())
+            currentImageFile = uriToFile(currentImageUri!!, requireContext()).reduceFileImage()
         }
     }
 
@@ -51,7 +51,7 @@ class PredictGrapeFragment : Fragment(R.layout.fragment_prediction) {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
-                currentImageFile = uriToFile(uri, requireContext())
+                currentImageFile = uriToFile(uri, requireContext()).reduceFileImage()
                 binding.ivFotoDeteksi.setImageURI(uri)
             }
         }
@@ -107,6 +107,7 @@ class PredictGrapeFragment : Fragment(R.layout.fragment_prediction) {
         }
 
         val file = currentImageFile!!
+        Toast.makeText(requireContext(), "size: "+file.length(), Toast.LENGTH_SHORT).show()
         val userId = "111"  // Ubah setelah fitur autentikasi
         val plantIndex = "1"  // Index tanaman anggur
 
