@@ -28,7 +28,6 @@ class PredictionsAdapter(
                 Glide.with(itemView.context)
                     .load(item.temporaryImageUrl)
                     .into(imgItemHistory)
-
             }
         }
     }
