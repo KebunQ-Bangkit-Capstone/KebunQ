@@ -93,4 +93,16 @@
             app:destination="@id/navigation_detail_analisis"/>
     </fragment>
 
+
+    <fragment
+        android:id="@+id/accPrivacyFragment"
+        android:name="com.md.kebunq.ui.settings.AccPrivacyFragment"
+        android:label="Account Privacy"
+        tools:layout="@layout/fragment_acc_privacy"/>
+
+    <fragment
+        android:id="@+id/termsConsFragment"
+        android:name="com.md.kebunq.ui.settings.TermsConsFragment"
+        android:label="Terms and Conditions"
+        tools:layout="@layout/fragment_terms_cons"/>
 </navigation>
