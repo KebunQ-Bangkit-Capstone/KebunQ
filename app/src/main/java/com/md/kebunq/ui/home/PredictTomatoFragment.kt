@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -62,6 +63,13 @@ class PredictTomatoFragment : Fragment(R.layout.fragment_prediction) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = "Prediksi Tomat"
+        }
+        setHasOptionsMenu(true)
+
+
         _binding = FragmentPredictionBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -174,8 +182,14 @@ class PredictTomatoFragment : Fragment(R.layout.fragment_prediction) {
         val bundle = Bundle().apply {
             putString("PREDICTION_ID", predictionResult)
         }
-        findNavController().navigate(R.id.actionPredictTomatoFragmentToDetailAnalisisFragment, bundle)
 
+        findNavController().navigate(
+            R.id.actionPredictCucumberFragmentToDetailAnalisisFragment,
+            bundle,
+            androidx.navigation.NavOptions.Builder()
+                .setPopUpTo(R.id.navigation_prediksi_tomato, true)
+                .build()
+        )
     }
 
     private fun checkCameraPermission(): Boolean {
@@ -208,6 +222,17 @@ class PredictTomatoFragment : Fragment(R.layout.fragment_prediction) {
             }
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().navigateUp() // Navigasi kembali
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
