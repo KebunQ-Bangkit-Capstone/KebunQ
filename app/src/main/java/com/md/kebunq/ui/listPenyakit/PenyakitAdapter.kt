@@ -29,7 +29,7 @@ class PenyakitAdapter(
     class PenyakitViewHolder(private val binding: ItemListPenyakitBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(disease: DiseasesItem) {
-            binding.tvNamaPenyakit.text = disease.analysis // Tampilkan deskripsi atau nama penyakit
+            binding.tvNamaPenyakit.text = disease.diseaseName // Tampilkan deskripsi atau nama penyakit
             Glide.with(binding.ivPlant.context)
                 .load(disease.temporaryImageUrl) // Ganti dengan URL gambar
                 .into(binding.ivPlant)

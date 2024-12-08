@@ -36,7 +36,7 @@ class DetailPenyakitFragment : Fragment() {
 
         // Tampilkan data di UI
         if (disease != null) {
-            binding.tvTitle.text = disease.analysis
+            binding.tvTitle.text = disease.diseaseName
             binding.tvDescription.text = disease.description
             Glide.with(this)
                 .load(disease.temporaryImageUrl)
