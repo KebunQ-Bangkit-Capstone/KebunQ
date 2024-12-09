@@ -11,17 +11,16 @@ class ApiConfig {
             val loggingInterceptor = HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             }
-            
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .build()
-                
+
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://kebunq-backend-api-269618306064.us-central1.run.app/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
-                
+
             return retrofit.create(ApiService::class.java)
         }
     }
