@@ -50,4 +50,24 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <string name="plant_disease_image">plant disease image</string>
     <string name="error_msg_listdiseases">Tidak ada list penyakit yang tersedia</string>
     <string name="description">Deskripsi</string>
+
+    <string name="teks_privasi_akun">KebunQ menghargai privasi Anda. Kami mengumpulkan beberapa jenis data pengguna untuk mendukung fungsi utama aplikasi. Data yang dikumpulkan meliputi informasi akun seperti nama, email, dan informasi profil yang Anda berikan, data interaksi seperti riwayat pendeteksian penyakit dan aktivitas di fitur komunitas, serta data teknis seperti gambar yang diunggah melalui kamera atau galeri, dan informasi perangkat seperti jenis perangkat dan alamat IP. Data ini digunakan untuk menjalankan deteksi penyakit tanaman menggunakan teknologi machine learning, menampilkan riwayat pendeteksian, memperbaiki layanan melalui analitik, serta melindungi keamanan aplikasi.
+        \n\nData Anda disimpan secara aman di cloud dengan penyedia layanan terpercaya yang mematuhi standar keamanan tinggi. Kami juga menerapkan protokol keamanan seperti enkripsi untuk melindungi data dari akses tidak sah. KebunQ hanya membagikan data Anda kepada pihak ketiga dalam kondisi tertentu, misalnya kepada penyedia layanan cloud untuk keperluan penyimpanan dan pemrosesan, atau jika diwajibkan oleh hukum yang berlaku.
+        \n\nSebagai pengguna, Anda memiliki hak untuk mengakses dan mengedit data Anda melalui fitur Edit Profile di aplikasi. Anda juga dapat meminta penghapusan data dengan menghubungi kami. Aplikasi KebunQ membutuhkan koneksi internet aktif untuk menjalankan pendeteksian penyakit, menyimpan data di cloud, dan mengakses fitur komunitas serta daftar penyakit tanaman.
+        \n\nKami dapat memperbarui kebijakan ini dari waktu ke waktu, dan perubahan akan diberitahukan melalui aplikasi atau email. Dengan menggunakan aplikasi KebunQ, Anda menyetujui kebijakan privasi ini.</string>
+    <string name="teks_syarat_ketentuan">Dengan mengakses dan menggunakan aplikasi KebunQ, Anda setuju untuk mematuhi syarat dan ketentuan yang tercantum dalam perjanjian ini. Aplikasi KebunQ disediakan untuk tujuan mendeteksi penyakit tanaman anggur, timun, dan tomat menggunakan teknologi machine learning dan cloud computing. Anda setuju untuk menggunakan aplikasi ini hanya untuk tujuan yang sah dan sesuai dengan hukum yang berlaku di negara Anda. Anda tidak diperkenankan untuk melakukan tindakan yang dapat merusak, mengubah, atau mengakses sistem atau jaringan kami secara tidak sah.
+        \n\nAplikasi KebunQ memungkinkan pengguna untuk mengunggah gambar melalui kamera atau galeri untuk deteksi penyakit tanaman. Anda menjamin bahwa gambar dan informasi yang diunggah adalah milik Anda dan tidak melanggar hak cipta atau hak privasi pihak ketiga. Kami berhak untuk menangguhkan atau menutup akun pengguna yang melanggar ketentuan ini atau melakukan tindakan yang membahayakan integritas aplikasi.
+        \n\nKami berhak untuk mengubah atau memperbarui aplikasi KebunQ kapan saja tanpa pemberitahuan terlebih dahulu. Perubahan tersebut akan mencakup pembaruan fitur, penghapusan fitur tertentu, atau perubahan pada tampilan aplikasi. Kami tidak bertanggung jawab atas kerugian yang timbul akibat perubahan atau penghentian layanan.
+        \n\nAplikasi KebunQ mengimplementasikan teknologi machine learning yang memerlukan data pengguna untuk analisis, serta memanfaatkan cloud computing untuk penyimpanan data. Anda setuju bahwa data yang Anda berikan akan digunakan sesuai dengan Kebijakan Privasi Akun yang kami tetapkan. Kami berhak untuk menghentikan akses Anda ke aplikasi apabila terjadi penyalahgunaan atau pelanggaran terhadap Syarat dan Ketentuan ini.
+        \n\nKami tidak bertanggung jawab atas kerugian atau kerusakan yang timbul akibat penggunaan aplikasi ini, baik secara langsung maupun tidak langsung. Anda setuju untuk membebaskan kami dari segala tuntutan atau klaim yang mungkin timbul akibat penggunaan aplikasi.</string>
+
+    <string name="foto_profil_pengguna">Foto profil pengguna</string>
+    <string name="icon">icon</string>
+    <string name="loading_email">Loading email…</string>
+    <string name="tv_privasi_akun">Privasi Akun</string>
+    <string name="mode_gelap">Mode Gelap</string>
+    <string name="ubah_profil">Ubah Profil</string>
+    <string name="keluar">Keluar</string>
+    <string name="syarat_dan_ketentuan"><![CDATA[Syarat & Ketentuan]]></string>
+    <string name="loading_name">Loading user name…</string>
 </resources>
