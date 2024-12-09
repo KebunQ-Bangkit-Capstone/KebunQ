@@ -77,6 +77,36 @@
         tools:layout="@layout/fragment_settings"/>
 
     <fragment
+        android:id="@+id/navigation_prediksi_anggur"
+        android:name="com.md.kebunq.ui.home.PredictGrapeFragment"
+        android:label="Ambil Gambar"
+        tools:layout="@layout/fragment_prediction">
+        <action
+            android:id="@+id/actionPredictGrapeFragmentToDetailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_prediksi_timun"
+        android:name="com.md.kebunq.ui.home.PredictCucumberFragment"
+        android:label="Ambil Gambar"
+        tools:layout="@layout/fragment_prediction">
+        <action
+            android:id="@+id/actionPredictCucumberFragmentToDetailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_prediksi_tomato"
+        android:name="com.md.kebunq.ui.home.PredictTomatoFragment"
+        android:label="Ambil Gambar"
+        tools:layout="@layout/fragment_prediction">
+        <action
+            android:id="@+id/actionPredictTomatoFragmentToDetailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis"/>
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_cucumber"
         android:name="com.md.kebunq.ui.listPenyakit.CucumberFragment"
         android:label="Cucumber"
@@ -112,9 +142,10 @@
         android:label="Detail Penyakit" >
         <argument
             android:name="disease_item"
-            app:argType="com.md.kebunq.data.response.DiseasesItem" />
-
+            app:argType="com.md.kebunq.data.response.DiseasesItem"/>
     </fragment>
+
+    <fragment
         android:id="@+id/accPrivacyFragment"
         android:name="com.md.kebunq.ui.settings.AccPrivacyFragment"
         android:label="Account Privacy"

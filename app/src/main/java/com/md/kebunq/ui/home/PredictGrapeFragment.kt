@@ -173,10 +173,10 @@ class PredictGrapeFragment : Fragment(R.layout.fragment_prediction) {
         }
 
         findNavController().navigate(
-            R.id.actionPredictCucumberFragmentToDetailAnalisisFragment,
+            R.id.action_grapeFragment_to_detailPenyakitFragment,
             bundle,
             androidx.navigation.NavOptions.Builder()
-                .setPopUpTo(R.id.navigation_prediksi_anggur, true)
+                .setPopUpTo(R.id.navigation_grape, true)
                 .build()
         )
     }
