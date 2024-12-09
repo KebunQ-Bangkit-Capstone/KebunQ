@@ -5,4 +5,13 @@
     <string name="nama_penyakit">Judul Nama Penyakit</string>
     <string name="confidenceScoredanTanggal">Confidence Score - 20 Oktober 2024</string>
     <string name="isi_hasil_analisis">Isi dari Hasil Analisis</string>
+    <string name="selamat_datang">Selamat Datang, Nama User!</string>
+    <string name="ajakan_deteksi">Deteksi Penyakit \n Sayuranmu Sekarang!</string>
+    <string name="fab_content_desc">deteksi</string>
+    <string name="tv_deskripsi_home">Khusus untuk Tomat, Cabe, dan \nTimun ya..</string>
+    <string name="tv_judul_history_analisi">History Hasil Prediksi</string>
+    <string name="btn_galeri">Ambil dari Galeri</string>
+    <string name="btn_photo">Photo</string>
+    <string name="analisis_gambar">Analisis Gambar</string>
+    <string name="artikel">Baca Artikel</string>
 </resources>

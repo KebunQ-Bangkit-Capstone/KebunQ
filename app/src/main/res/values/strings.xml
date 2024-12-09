@@ -5,8 +5,16 @@
     <string name="History">History</string>
     <string name="list_penyakit">List Penyakit</string>
     <string name="settings">Settings</string>
+    <string name="selamat_datang">Selamat Datang, Nama User!</string>
+    <string name="ajakan_deteksi">Deteksi penyakit tanamanmu sekarang!</string>
+    <string name="fab_content_desc">deteksi</string>
+    <string name="tv_deskripsi_home">Pilih dulu jenis tanamanmu ya..</string>
+    <string name="tv_judul_history_analisi">Hasil deteksi terbaru</string>
+    <string name="btn_galeri">Ambil dari Galeri</string>
+    <string name="btn_photo">Photo</string>
+    <string name="analisis_gambar">Analisis Gambar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<!--feature-history-->
+    <!--feature-history-->
     <string name="hasil_prediksi">Hasil Prediksi</string>
     <string name="tanggal_prediksi">Tanggal Prediksi</string>
     <string name="empty_state">Hasil Prediksi Masih Kosong</string>
@@ -31,15 +39,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
+    <string name="artikel">Baca Artikel</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

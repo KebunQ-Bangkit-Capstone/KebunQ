@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.md.kebunq.data.response.PredictionsItem
 import com.md.kebunq.databinding.ItemHistoryBinding
-import java.text.SimpleDateFormat
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -29,7 +28,6 @@ class PredictionsAdapter(
                 Glide.with(itemView.context)
                     .load(item.temporaryImageUrl)
                     .into(imgItemHistory)
-
             }
         }
     }
@@ -46,6 +44,7 @@ class PredictionsAdapter(
         notifyDataSetChanged()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: PredictionViewHolder, position: Int) {
         val prediction = predictions[position]
         holder.bind(prediction)

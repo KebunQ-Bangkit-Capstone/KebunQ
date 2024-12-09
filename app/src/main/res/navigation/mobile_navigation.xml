@@ -8,8 +8,21 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.md.kebunq.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_predictCucumberFragment"
+            app:destination="@id/navigation_prediksi_timun" />
+        <action
+            android:id="@+id/action_homeFragment_to_predictGrapeFragment"
+            app:destination="@id/navigation_prediksi_anggur" />
+        <action
+            android:id="@+id/action_homeFragment_to_predictTomatoFragment"
+            app:destination="@id/navigation_prediksi_tomato" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
@@ -25,7 +38,15 @@
         android:id="@+id/navigation_detail_analisis"
         android:name="com.md.kebunq.ui.history.DetailAnalisisFragment"
         android:label="Detail Analisis"
-        tools:layout="@layout/fragment_detail_analisis"/>
+        tools:layout="@layout/fragment_detail_analisis">
+        <argument
+            android:name="predictionResult"
+            app:argType="string" />
+        <argument
+            android:name="PREDICTION_ID"
+            app:argType="string" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_community"
@@ -44,4 +65,35 @@
         android:name="com.md.kebunq.ui.settings.SettingsFragment"
         android:label="@string/settings"
         tools:layout="@layout/fragment_settings"/>
+
+    <fragment
+        android:id="@+id/navigation_prediksi_anggur"
+        android:name="com.md.kebunq.ui.home.PredictGrapeFragment"
+        android:label="Ambil Gambar"
+        tools:layout="@layout/fragment_prediction">
+        <action
+            android:id="@+id/actionPredictGrapeFragmentToDetailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_prediksi_timun"
+        android:name="com.md.kebunq.ui.home.PredictCucumberFragment"
+        android:label="Ambil Gambar"
+        tools:layout="@layout/fragment_prediction">
+        <action
+            android:id="@+id/actionPredictCucumberFragmentToDetailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_prediksi_tomato"
+        android:name="com.md.kebunq.ui.home.PredictTomatoFragment"
+        android:label="Ambil Gambar"
+        tools:layout="@layout/fragment_prediction">
+        <action
+            android:id="@+id/actionPredictTomatoFragmentToDetailAnalisisFragment"
+            app:destination="@id/navigation_detail_analisis"/>
+    </fragment>
+
 </navigation>

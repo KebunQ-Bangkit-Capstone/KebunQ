@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.md.kebunq.R
 import com.md.kebunq.databinding.FragmentHistoryBinding
 
@@ -33,12 +34,24 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "111"
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            // Lakukan aksi refresh, misalnya panggil ulang API
+            viewModel.getPredictionsByUserId(userId)
+
+            // Matikan animasi loading setelah data selesai dimuat
+            viewModel.predictionsHistory.observe(viewLifecycleOwner) {
+                binding.swipeRefreshLayout.isRefreshing = false
+            }
+        }
+
         setupViewModel()
         setupRecyclerViews()
         observeViewModel()
-        val userId = "111"
-        viewModel.getPredictionsByUserId(userId)
+        if (userId != null) {
+            viewModel.getPredictionsByUserId(userId)
+        }
     }
 
     private fun observeViewModel() {

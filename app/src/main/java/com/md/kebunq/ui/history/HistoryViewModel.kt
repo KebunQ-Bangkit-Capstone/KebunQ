@@ -27,7 +27,7 @@ class HistoryViewModel : ViewModel() {
             try {
                 val response = ApiConfig.getApiService().getPredictionsByUserId(userId)
                 if (response.predictions.isNotEmpty()){
-                    _predictionsHistory.value = response.predictions
+                    _predictionsHistory.value = response.predictions.sortedByDescending { it.createdAt }
                 }else{
                     _error.value = "Hasil Prediksi Anda Masih Kosong"
                 }
