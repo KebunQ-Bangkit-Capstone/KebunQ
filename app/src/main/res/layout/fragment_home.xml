@@ -272,6 +272,7 @@
                 tools:layout_editor_absoluteX="16dp"
                 tools:listitem="@layout/item_history"
                 />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
