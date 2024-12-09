@@ -126,8 +126,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    //facebook
-    implementation("com.facebook.android:facebook-android-sdk:15.2.0")
 
 
     implementation(kotlin("script-runtime"))

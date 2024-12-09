@@ -11,13 +11,6 @@ import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.lifecycleScope
-import com.facebook.AccessToken
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.FacebookSdk
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -37,43 +30,15 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var callbackManager: CallbackManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        FacebookSdk.sdkInitialize(applicationContext)
-        FacebookSdk.setClientToken("42cb875ab9a863466ef753f30020653a")
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        //facebook login
-        callbackManager = CallbackManager.Factory.create()
-        binding.btnLoginFacebook.setOnClickListener{
-            LoginManager.getInstance().logInWithReadPermissions(
-                this,
-                listOf("email", "public_profile")
-            )
-        }
-        LoginManager.getInstance().registerCallback(callbackManager, object :
-            FacebookCallback<LoginResult> {
-            override fun onCancel() {
-                Log.d(TAG, "facebook:onCancel")
-            }
-
-            override fun onError(error: FacebookException) {
-                Log.d(TAG, "facebook:onError", error)
-            }
-
-            override fun onSuccess(result: LoginResult) {
-                val accessToken = result.accessToken
-                handleFacebookAccessToken(accessToken)
-            }
-
-        },
-        )
 
         binding.btnLogin.setOnClickListener{
             loginWithEmalAndPassword()
@@ -104,30 +69,6 @@ class LoginActivity : AppCompatActivity() {
                         "User Belum Terdaftar, Silahkan Register",
                         Toast.LENGTH_SHORT,
                     ).show()
-                }
-            }
-    }
-
-    private fun handleFacebookAccessToken(accessToken: AccessToken) {
-        val credential = FacebookAuthProvider.getCredential(accessToken.token)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    Log.d("FirebaseAuth", "Login successful: ${user?.displayName}")
-                    val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-                    val editor = sharedPreferences.edit()
-                    editor.putBoolean("isLoggedIn", true)
-                    editor.apply()
-                    updateUI(user)
-                } else {
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                    updateUI(null)
                 }
             }
     }
@@ -210,14 +151,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-    }
-
-    @Deprecated("This method has been deprecated in favor of using the Activity Result API\n      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt\n      contracts for common intents available in\n      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for\n      testing, and allow receiving results in separate, testable classes independent from your\n      activity. Use\n      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}\n      with the appropriate {@link ActivityResultContract} and handling the result in the\n      {@link ActivityResultCallback#onActivityResult(Object) callback}.")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        // Pass the activity result back to the Facebook SDK
-        callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onStart() {

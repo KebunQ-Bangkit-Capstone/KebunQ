@@ -13,13 +13,6 @@ import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.FacebookSdk
-import com.facebook.GraphRequest
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -45,7 +38,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var callbackManager: CallbackManager
     private lateinit var registerViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,17 +46,10 @@ class RegisterActivity : AppCompatActivity() {
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        FacebookSdk.setClientToken(getString(R.string.facebook_client_token))
-        FacebookSdk.sdkInitialize(applicationContext)
-
 
         val repository = UserRepository(ApiConfig.getApiService())
         val viewModelFactory = UserViewModelFactory(repository)
         registerViewModel = ViewModelProvider(this, viewModelFactory)[UserViewModel::class.java]
-        callbackManager = CallbackManager.Factory.create()
-        binding.btnFacebook.setOnClickListener{
-            registerFacebook()
-        }
 
         auth = Firebase.auth
         binding.btnRegister.setOnClickListener{
@@ -73,96 +58,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.signInButton.setOnClickListener {
             signIn()
         }
-    }
-
-    private fun registerFacebook() {
-        // Memulai proses login Facebook
-        LoginManager.getInstance().logInWithReadPermissions(
-            this,
-            listOf("public_profile", "email")
-        )
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onSuccess(result: LoginResult) {
-                    val accessToken = result.accessToken
-                    val credential = FacebookAuthProvider.getCredential(accessToken.token)
-
-                    // Masuk ke Firebase dengan kredensial Facebook
-                    auth.signInWithCredential(credential)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Log.d(TAG, "signInWithCredential:success")
-
-                                // Mengambil informasi pengguna dari Facebook Graph API
-                                val graphRequest = GraphRequest.newMeRequest(accessToken) { jsonObject, _ ->
-                                    try {
-                                        val email = jsonObject?.optString("email") ?: "Email not found"
-                                        val name = jsonObject?.optString("name") ?: "Name not found"
-
-                                        // Simpan data pengguna ke API jika diperlukan
-                                        val user = auth.currentUser
-                                        val userId = user?.uid ?: ""
-                                        registerViewModel.createUser(User(userId, email, name))
-                                        updateUI(user)
-                                        finish()
-                                        Toast.makeText(
-                                            this@RegisterActivity,
-                                            "Registration successful",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-                                        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", true)
-                                        val editor = sharedPreferences.edit()
-                                        editor.putBoolean("isLoggedIn", isLoggedIn)
-
-                                    } catch (e: Exception) {
-                                        Log.e(TAG, "Error parsing Facebook user data", e)
-                                        Toast.makeText(
-                                            this@RegisterActivity,
-                                            "Error retrieving Facebook user data",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                }
-                                val parameters = Bundle()
-                                parameters.putString("fields", "email,name")
-                                graphRequest.parameters = parameters
-                                graphRequest.executeAsync()
-                            } else {
-                                Log.w(TAG, "signInWithCredential:failure", task.exception)
-                                Toast.makeText(
-                                    this@RegisterActivity,
-                                    "Authentication failed.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                }
-
-                override fun onCancel() {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Facebook login cancelled",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                override fun onError(error: FacebookException) {
-                    Log.e(TAG, "Facebook login error: ${error.message}", error)
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Error during Facebook login: ${error.localizedMessage}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        )
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun registerUserNativeWithFirebase() {

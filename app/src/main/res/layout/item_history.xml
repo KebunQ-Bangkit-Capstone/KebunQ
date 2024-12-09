@@ -5,7 +5,9 @@
     android:id="@+id/card_view"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_marginTop="16dp"
     android:layout_height="wrap_content"
+    card_view:cardCornerRadius="12dp"
     android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,7 +51,7 @@
             android:id="@+id/tv_item_tanggal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:textAppearance="@style/subheadline"
             android:lineSpacingExtra="4sp"

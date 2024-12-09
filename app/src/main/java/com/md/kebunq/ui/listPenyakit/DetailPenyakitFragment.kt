@@ -62,9 +62,9 @@ class DetailPenyakitFragment : Fragment() {
         )[DetailPenyakitViewModel::class.java]
 
         // Observers
-        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-            message?.let { Toast.makeText(context, it, Toast.LENGTH_SHORT).show() }
-        }
+//        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+//            message?.let { Toast.makeText(context, it, Toast.LENGTH_SHORT).show() }
+//        }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

@@ -57,6 +57,7 @@ class HistoryFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.isLoading.observe(viewLifecycleOwner){ isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            binding.tvEmptyMessage.visibility = View.GONE
         }
 
         viewModel.predictionsHistory.observe(viewLifecycleOwner) { predictions ->
