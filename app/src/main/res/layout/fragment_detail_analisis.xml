@@ -89,7 +89,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tabTextColor="@android:color/black" />
+                app:tabTextColor="@color/md_theme_secondary" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"

@@ -26,7 +26,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_margin="16dp"
+                android:layout_marginHorizontal="16dp"
                 android:id="@+id/tv_selamat_datang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -269,7 +269,8 @@
                 app:layout_constraintTop_toTopOf="@+id/rv_history_analisis" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_margin="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
                 android:id="@+id/rv_history_analisis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -280,7 +281,5 @@
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

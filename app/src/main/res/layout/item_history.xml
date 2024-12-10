@@ -5,9 +5,9 @@
     android:id="@+id/card_view"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_marginTop="16dp"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="12dp"
+    style="@style/NoShadowCardView"
     android:layout_gravity="center">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:padding="0dp">
 
@@ -36,10 +37,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/img_item_history"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginHorizontal="18dp"
+            android:textSize="16sp"
             android:fontFamily="@font/font_bold"
-            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
             android:lineSpacingExtra="5sp"
             android:textColor="@color/md_theme_primary"
             android:gravity="center_vertical"
@@ -53,12 +54,9 @@
             android:id="@+id/tv_item_tanggal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:ellipsize="end"
-            android:textAppearance="@style/subheadline"
-            android:lineSpacingExtra="4sp"
-            android:translationY="-1.8sp"
-            android:gravity="top"
+            android:textSize="12sp"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_item_hasilPrediksi"
             card_view:layout_constraintStart_toStartOf="@+id/tv_item_hasilPrediksi"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_hasilPrediksi"

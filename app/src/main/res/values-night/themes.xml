@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.KebunQ" parent="Theme.Material3.Dark">
         <item name="android:fontFamily">@font/font_medium_jakarta</item>
+        <item name="actionBarStyle">@style/CustomActionBarStyle</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
@@ -49,5 +50,22 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+    </style>
+
+    <style name="CustomActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="titleTextStyle">@style/CustomActionBarTitleText</item>
+    </style>
+
+    <!-- TextAppearance untuk ActionBar Title -->
+    <style name="CustomActionBarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="fontFamily">@font/font_bold</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="android:textSize">20sp</item> <!-- Ubah ukuran jika perlu -->
+    </style>
+
+    <style name="NoShadowCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">1dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardBackgroundColor">@color/cardview_dark_background</item>
     </style>
 </resources>
