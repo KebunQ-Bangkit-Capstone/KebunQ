@@ -8,79 +8,97 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_hasil_analis"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_1"
             android:layout_width="match_parent"
-            android:layout_height="205dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_hasil_analis"
+                android:layout_width="match_parent"
+                android:layout_height="205dp"
+                android:layout_marginTop="4dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedCornerImage"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/tv_hasil_analisis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/font_bold"
+                android:textColor="@color/md_theme_primary"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                app:layout_constraintEnd_toEndOf="@+id/img_hasil_analis"
+                app:layout_constraintStart_toStartOf="@+id/img_hasil_analis"
+                app:layout_constraintTop_toBottomOf="@+id/img_hasil_analis"
+                tools:text="@string/nama_penyakit" />
+
+            <TextView
+                android:id="@+id/tv_jenis_tanaman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                app:layout_constraintEnd_toEndOf="@+id/tv_hasil_analisis"
+                app:layout_constraintStart_toStartOf="@+id/tv_hasil_analisis"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hasil_analisis"
+                tools:text="@string/jenis_tanaman" />
+
+            <TextView
+                android:id="@+id/tv_cs_tanggal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                app:layout_constraintEnd_toEndOf="@+id/tv_jenis_tanaman"
+                app:layout_constraintStart_toStartOf="@+id/tv_jenis_tanaman"
+                app:layout_constraintTop_toBottomOf="@+id/tv_jenis_tanaman"
+                tools:text="@string/confidenceScoredanTanggal" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:adjustViewBounds="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedCornerImage"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            app:layout_constraintTop_toBottomOf="@+id/container_1">
 
-        <TextView
-            android:id="@+id/tv_hasil_analisis"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="@string/nama_penyakit"
-            android:layout_marginTop="12dp"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-            app:layout_constraintEnd_toEndOf="@+id/img_hasil_analis"
-            app:layout_constraintStart_toStartOf="@+id/img_hasil_analis"
-            app:layout_constraintTop_toBottomOf="@+id/img_hasil_analis" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/md_theme_inverseOnSurface"
+                android:contentDescription="Navigasi tab untuk memilih kategori konten"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabTextColor="@color/md_theme_secondary" />
 
-        <TextView
-            android:id="@+id/tv_jenis_tanaman"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            tools:text="@string/jenis_tanaman"
-            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/tv_hasil_analisis"
-            app:layout_constraintStart_toStartOf="@+id/tv_hasil_analisis"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hasil_analisis"/>
-
-        <TextView
-            android:id="@+id/tv_cs_tanggal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            tools:text="@string/confidenceScoredanTanggal"
-            android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
-            app:layout_constraintEnd_toEndOf="@+id/tv_jenis_tanaman"
-            app:layout_constraintStart_toStartOf="@+id/tv_jenis_tanaman"
-            app:layout_constraintTop_toBottomOf="@+id/tv_jenis_tanaman" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="?attr/colorSurface"
-            android:contentDescription="Navigasi tab untuk memilih kategori konten"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_cs_tanggal"
-            app:tabTextColor="@android:color/darker_gray" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/tabs"
-            app:layout_constraintStart_toStartOf="@+id/tabs"
-            app:layout_constraintTop_toBottomOf="@+id/tabs" />
-
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_marginBottom="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabs" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

@@ -7,7 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.md.kebunq.R
+import com.md.kebunq.data.UserRepository
+import com.md.kebunq.data.UserViewModel
+import com.md.kebunq.data.UserViewModelFactory
+import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -15,6 +20,7 @@ class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
     private lateinit var settingViewModel: SettingsViewModel
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,10 +35,31 @@ class SettingsFragment : Fragment() {
 
         settingViewModel = ViewModelProvider(requireActivity()).get(SettingsViewModel::class.java)
 
+        val factory = UserViewModelFactory(UserRepository(ApiConfig.getApiService()))
+        userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            userViewModel.getUserById(userId)
+        }
+        userViewModel.detailUser.observe(viewLifecycleOwner) { result ->
+            result.onSuccess { response ->
+                binding.tvUserName.text = response.name
+                binding.ivUserEmail.text = response.email
+            }.onFailure { exception ->
+                binding.tvUserName.text = "Username"
+                binding.ivUserEmail.text = "Email"
+            }
+        }
         // Observe the dark mode setting and update the switch state
         settingViewModel.isDarkMode.observe(viewLifecycleOwner) { isDarkMode ->
             binding.toggleDarkmode.isChecked = isDarkMode
         }
+
+        val username = FirebaseAuth.getInstance().currentUser?.displayName
+        val email = FirebaseAuth.getInstance().currentUser?.email
+
+        binding.tvUserName.text = username
+        binding.ivUserEmail.text = email
 
         // Set up the switch listener to update dark mode setting
         binding.toggleDarkmode.setOnCheckedChangeListener { _, isChecked ->

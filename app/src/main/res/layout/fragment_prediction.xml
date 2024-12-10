@@ -20,7 +20,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/imageplaceholder" />
+            android:src="@drawable/imageplaceholder"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/button_take_photo"

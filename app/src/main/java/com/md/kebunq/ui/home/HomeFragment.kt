@@ -16,7 +16,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.md.kebunq.R
+import com.md.kebunq.data.UserRepository
+import com.md.kebunq.data.UserViewModel
+import com.md.kebunq.data.UserViewModelFactory
 import com.md.kebunq.data.response.PredictionsItem
+import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentHomeBinding
 import com.md.kebunq.databinding.ItemHistoryBinding
 import java.time.ZonedDateTime
@@ -28,6 +32,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: HomeViewModel
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +43,8 @@ class HomeFragment : Fragment() {
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "111"
         viewModel.getLatestPredictionsByUserId(userId)
+
+
 
         // Inflate layout dengan ViewBinding
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -50,6 +57,18 @@ class HomeFragment : Fragment() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "111"
         viewModel.getLatestPredictionsByUserId(userId)
 
+        val factory = UserViewModelFactory(UserRepository(ApiConfig.getApiService()))
+        userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
+        if (userId != null) {
+            userViewModel.getUserById(userId)
+        }
+        userViewModel.detailUser.observe(viewLifecycleOwner) { result ->
+            result.onSuccess { response ->
+                binding.tvSelamatDatang.text = "Selamat Datang, ${response.name}"
+            }.onFailure { exception ->
+                binding.tvSelamatDatang.text = "Selamat Datang"
+            }
+        }
         // Menginisialisasi SwipeRefreshLayout
         binding.swipeRefreshLayout.setOnRefreshListener {
             // Lakukan aksi refresh, misalnya panggil ulang API
