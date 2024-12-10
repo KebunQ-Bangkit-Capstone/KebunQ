@@ -32,6 +32,8 @@
             android:gravity="top"
             android:lineSpacingExtra="4sp"
             android:text="@string/tv_register"
+            android:textColor="@color/md_theme_primary"
+            android:fontFamily="@font/font_bold"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
             android:translationY="-1.94sp"
             app:layout_constraintEnd_toEndOf="@+id/logoKebunQ"
@@ -46,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:hint="@string/username"
+            android:textColorHint="@color/md_theme_secondary"
             app:layout_constraintEnd_toEndOf="@+id/tv_hello"
             app:layout_constraintStart_toStartOf="@+id/tv_hello"
             app:layout_constraintTop_toBottomOf="@+id/tv_hello">
@@ -63,6 +66,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/email"
             android:layout_marginTop="24dp"
+            android:textColorHint="@color/md_theme_secondary"
             app:layout_constraintEnd_toEndOf="@+id/tf_username"
             app:layout_constraintStart_toStartOf="@+id/tf_username"
             app:layout_constraintTop_toBottomOf="@+id/tf_username">
@@ -82,6 +86,7 @@
             android:hint="@string/password"
             app:layout_constraintEnd_toEndOf="@+id/tf_email"
             app:layout_constraintStart_toStartOf="@+id/tf_email"
+            android:textColorHint="@color/md_theme_secondary"
             app:layout_constraintTop_toBottomOf="@+id/tf_email"
             app:endIconMode="password_toggle">
             <com.google.android.material.textfield.TextInputEditText
@@ -114,6 +119,7 @@
             android:gravity="center_horizontal|top"
             android:lineSpacingExtra="5sp"
             android:text="@string/or"
+            android:textColor="@color/md_theme_primary"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:translationY="-2.62sp"
             app:layout_constraintEnd_toEndOf="@+id/btn_register"

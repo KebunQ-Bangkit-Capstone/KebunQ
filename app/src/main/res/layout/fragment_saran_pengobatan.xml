@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:justificationMode="inter_word"
         android:text="@string/content_tab_saran_pengobatan" />
 
 </FrameLayout>
