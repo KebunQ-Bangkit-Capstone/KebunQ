@@ -54,8 +54,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "111"
-        viewModel.getLatestPredictionsByUserId(userId)
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        viewModel.getLatestPredictionsByUserId(userId.toString())
 
         val factory = UserViewModelFactory(UserRepository(ApiConfig.getApiService()))
         userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
         // Menginisialisasi SwipeRefreshLayout
         binding.swipeRefreshLayout.setOnRefreshListener {
             // Lakukan aksi refresh, misalnya panggil ulang API
-            viewModel.getLatestPredictionsByUserId(userId)
+            viewModel.getLatestPredictionsByUserId(userId.toString())
 
             // Matikan animasi loading setelah data selesai dimuat
             viewModel.predictionsHistory.observe(viewLifecycleOwner) {

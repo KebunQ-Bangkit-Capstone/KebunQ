@@ -158,5 +158,11 @@
         android:label="Terms and Conditions"
         tools:layout="@layout/fragment_terms_cons"/>
 
+    <activity
+        android:id="@+id/navigation_welcome"
+        android:name="com.md.kebunq.ui.welcome.WelcomeActivity"
+        android:label="Welcome"
+        tools:layout="@layout/activity_welcome" />
+
 
 </navigation>
