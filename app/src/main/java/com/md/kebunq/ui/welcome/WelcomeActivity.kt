@@ -66,7 +66,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-            Toast.makeText(this, "Register", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Register Berhasil", Toast.LENGTH_SHORT).show()
         }
     }
 

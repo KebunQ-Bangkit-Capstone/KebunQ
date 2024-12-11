@@ -16,8 +16,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.datastore.core.IOException
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.md.kebunq.R
 import com.md.kebunq.data.response.PredictionResponse
@@ -173,8 +175,11 @@ class PredictTomatoFragment : Fragment(R.layout.fragment_prediction) {
 
             override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
                 binding.progressBar.visibility = View.GONE
-                Log.e("HomeFragment", "Kesalahan terjadi: ${t.message}", t)
-                Toast.makeText(requireContext(), "Kesalahan: ${t.message}", Toast.LENGTH_SHORT).show()
+                val errorMessage = when (t) {
+                    is IOException -> "Koneksi internet bermasalah. Silakan periksa jaringan Anda."
+                    else -> "Kesalahan tidak diketahui: ${t.message}"
+                }
+                Snackbar.make(binding.root, "Kesalahan: $errorMessage", Snackbar.LENGTH_LONG).show()
             }
         })
     }

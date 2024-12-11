@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -15,8 +16,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.datastore.core.IOException
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.md.kebunq.R
 import com.md.kebunq.data.response.PredictionResponse
@@ -108,16 +111,77 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
         launcherIntentGallery.launch(chooser)
     }
 
+//    private fun analyzeImage() {
+//        if (currentImageFile == null) {
+//            Toast.makeText(requireContext(), "Silakan pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//
+//        val file = currentImageFile!!
+//        val userId = FirebaseAuth.getInstance().currentUser?.uid
+////        val userId = "111"  // Ubah setelah fitur autentikasi
+//        val plantIndex = "0"  // Index tanaman timun
+//
+//        // Menampilkan loading
+//        binding.progressBar.visibility = View.VISIBLE
+//
+//        // Siapkan API Service
+//        val apiService = ApiConfig.getApiService()
+//        val imagePart = MultipartBody.Part.createFormData(
+//            "image",
+//            file.name,
+//            file.asRequestBody("multipart/form-data".toMediaType())
+//        )
+//
+//        // Panggil API prediksi
+//        apiService.predict(userId.toString(), plantIndex, imagePart).enqueue(object : Callback<PredictionResponse> {
+//            override fun onResponse(
+//                call: Call<PredictionResponse>,
+//                response: Response<PredictionResponse>
+//            ) {
+//                binding.progressBar.visibility = View.GONE
+//                if (response.isSuccessful && response.body() != null) {
+//                    val predictionResponse = response.body()!!
+//
+//                    // Ambil data prediksi
+//                    val predictionId = predictionResponse.predictionId
+//                    val predictedPlantIndex = predictionResponse.plantIndex
+//                    val confidenceScore = predictionResponse.confidenceScore
+//                    val diseaseName = predictionResponse.diseaseName
+//
+//                    // Debugging
+//                    println("Prediction ID: $predictionId")
+//                    println("Plant Index: $predictedPlantIndex")
+//                    println("Disease Name: $diseaseName")
+//                    println("Confidence Score: $confidenceScore")
+//
+//                    // Navigasi ke DetailAnalisisFragment
+//                    navigateToDetailFragment(predictionId)
+//                } else {
+//                    Toast.makeText(requireContext(), "Gagal melakukan analisis: ${response.message()}", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
+//                binding.progressBar.visibility = View.GONE
+//                Toast.makeText(requireContext(), "Kesalahan: ${t.message}", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
+
     private fun analyzeImage() {
         if (currentImageFile == null) {
-            Toast.makeText(requireContext(), "Silakan pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Silakan pilih gambar terlebih dahulu", Snackbar.LENGTH_SHORT).show()
             return
         }
 
         val file = currentImageFile!!
         val userId = FirebaseAuth.getInstance().currentUser?.uid
-//        val userId = "111"  // Ubah setelah fitur autentikasi
-        val plantIndex = "0"  // Index tanaman timun
+        if (userId == null) {
+            Snackbar.make(binding.root, "Anda belum login. Silakan login terlebih dahulu.", Snackbar.LENGTH_SHORT).show()
+            return
+        }
+        val plantIndex = "0" // Index tanaman timun
 
         // Menampilkan loading
         binding.progressBar.visibility = View.VISIBLE
@@ -131,7 +195,7 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
         )
 
         // Panggil API prediksi
-        apiService.predict(userId.toString(), plantIndex, imagePart).enqueue(object : Callback<PredictionResponse> {
+        apiService.predict(userId, plantIndex, imagePart).enqueue(object : Callback<PredictionResponse> {
             override fun onResponse(
                 call: Call<PredictionResponse>,
                 response: Response<PredictionResponse>
@@ -146,25 +210,31 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
                     val confidenceScore = predictionResponse.confidenceScore
                     val diseaseName = predictionResponse.diseaseName
 
-                    // Debugging
-                    println("Prediction ID: $predictionId")
-                    println("Plant Index: $predictedPlantIndex")
-                    println("Disease Name: $diseaseName")
-                    println("Confidence Score: $confidenceScore")
+                    // Logging untuk debugging
+                    Log.d("AnalyzeImage", "Prediction ID: $predictionId")
+                    Log.d("AnalyzeImage", "Plant Index: $predictedPlantIndex")
+                    Log.d("AnalyzeImage", "Disease Name: $diseaseName")
+                    Log.d("AnalyzeImage", "Confidence Score: $confidenceScore")
 
                     // Navigasi ke DetailAnalisisFragment
                     navigateToDetailFragment(predictionId)
                 } else {
-                    Toast.makeText(requireContext(), "Gagal melakukan analisis: ${response.message()}", Toast.LENGTH_SHORT).show()
+                    val errorMessage = response.errorBody()?.string() ?: "Terjadi kesalahan saat memproses permintaan"
+                    Snackbar.make(binding.root, "Gagal melakukan analisis: $errorMessage", Snackbar.LENGTH_LONG).show()
                 }
             }
 
             override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
                 binding.progressBar.visibility = View.GONE
-                Toast.makeText(requireContext(), "Kesalahan: ${t.message}", Toast.LENGTH_SHORT).show()
+                val errorMessage = when (t) {
+                    is IOException -> "Koneksi internet bermasalah. Silakan periksa jaringan Anda."
+                    else -> "Kesalahan tidak diketahui: ${t.message}"
+                }
+                Snackbar.make(binding.root, "Kesalahan: $errorMessage", Snackbar.LENGTH_LONG).show()
             }
         })
     }
+
 
 
     private fun navigateToDetailFragment(predictionResult: String) {
