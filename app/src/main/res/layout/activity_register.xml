@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.061"
-            tools:src="@tools:sample/avatars" />
+            android:src="@drawable/image_logo"/>
 
         <TextView
             android:id="@+id/tv_hello"
@@ -55,7 +55,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_username"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:padding="18dp"
+                android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,10 +72,16 @@
             app:layout_constraintStart_toStartOf="@+id/tf_username"
             app:layout_constraintTop_toBottomOf="@+id/tf_username">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.md.kebunq.data.customUI.CustomEmailEditText
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:padding="18dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,10 +96,15 @@
             android:textColorHint="@color/md_theme_secondary"
             app:layout_constraintTop_toBottomOf="@+id/tf_email"
             app:endIconMode="password_toggle">
-            <com.google.android.material.textfield.TextInputEditText
+            <com.md.kebunq.data.customUI.CustomPassword
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                app:errorEnabled="true"
+                android:clickable="true"
+                android:padding="16dp"
+                android:focusable="true"
                 android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>

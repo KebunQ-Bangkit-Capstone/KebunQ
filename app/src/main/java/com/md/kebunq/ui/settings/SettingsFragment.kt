@@ -1,5 +1,6 @@
 package com.md.kebunq.ui.settings
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.md.kebunq.DataStoreManager
 import com.md.kebunq.R
+import com.md.kebunq.data.SettingsViewModelFactory
 import com.md.kebunq.data.UserRepository
 import com.md.kebunq.data.UserViewModel
 import com.md.kebunq.data.UserViewModelFactory
