@@ -1,6 +1,5 @@
 package com.md.kebunq.ui.settings
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,9 +37,17 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        settingViewModel = ViewModelProvider(requireActivity()).get(SettingsViewModel::class.java)
+        val dataStoreManager = DataStoreManager.getInstance(requireContext())
+        // Inisialisasi ViewModel
+        settingViewModel = ViewModelProvider(
+            requireActivity(),
+            SettingsViewModelFactory(requireActivity().application, dataStoreManager)
+        )[SettingsViewModel::class.java]
 
-        val factory = UserViewModelFactory(UserRepository(ApiConfig.getApiService()))
+        val factory = UserViewModelFactory(
+            UserRepository(ApiConfig.getApiService()),
+            dataStoreManager
+        )
         userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         if (userId != null) {

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailAnalisisFragment"
             app:destination="@id/navigation_detail_analisis" />
+        <action
+            android:id="@+id/action_homeFragment_to_welcomeActivity"
+            app:destination="@+id/navigation_welcome" />
     </fragment>
 
     <fragment
@@ -46,6 +49,12 @@
             android:name="PREDICTION_ID"
             app:argType="string" />
     </fragment>
+
+    <!--<fragment
+        android:id="@+id/navigation_welcome"
+        android:name="com.md.kebunq.ui.welcome.WelcomeActivity"
+        android:label="Welcome"
+        tools:layout="@layout/activity_welcome" />-->
 
 
 <!--    <fragment-->

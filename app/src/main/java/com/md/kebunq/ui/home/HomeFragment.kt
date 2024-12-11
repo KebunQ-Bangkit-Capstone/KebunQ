@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.md.kebunq.DataStoreManager
 import com.md.kebunq.R
 import com.md.kebunq.data.UserRepository
 import com.md.kebunq.data.UserViewModel
@@ -41,10 +42,10 @@ class HomeFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "111"
-        viewModel.getLatestPredictionsByUserId(userId)
-
-
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            viewModel.getLatestPredictionsByUserId(userId)
+        }
 
         // Inflate layout dengan ViewBinding
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -54,25 +55,34 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-        viewModel.getLatestPredictionsByUserId(userId.toString())
+        val dataStoreManager = DataStoreManager.getInstance(requireContext())
 
-        val factory = UserViewModelFactory(UserRepository(ApiConfig.getApiService()))
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            viewModel.getLatestPredictionsByUserId(userId)
+        }
+
+        val factory = UserViewModelFactory(
+            UserRepository(ApiConfig.getApiService()),
+            dataStoreManager
+        )
         userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
         if (userId != null) {
             userViewModel.getUserById(userId)
         }
         userViewModel.detailUser.observe(viewLifecycleOwner) { result ->
             result.onSuccess { response ->
-                binding.tvSelamatDatang.text = "Selamat Datang, ${response.name}"
-            }.onFailure { exception ->
-                binding.tvSelamatDatang.text = "Selamat Datang"
+                binding.tvSelamatDatang.text = getString(R.string.welcome_text, response.name)
+            }.onFailure { _ ->
+                binding.tvSelamatDatang.text = getString(R.string.selamat_datang)
             }
         }
         // Menginisialisasi SwipeRefreshLayout
         binding.swipeRefreshLayout.setOnRefreshListener {
             // Lakukan aksi refresh, misalnya panggil ulang API
-            viewModel.getLatestPredictionsByUserId(userId.toString())
+            if (userId != null) {
+                viewModel.getLatestPredictionsByUserId(userId)
+            }
 
             // Matikan animasi loading setelah data selesai dimuat
             viewModel.predictionsHistory.observe(viewLifecycleOwner) {
