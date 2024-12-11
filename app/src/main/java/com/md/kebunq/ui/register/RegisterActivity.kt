@@ -3,9 +3,8 @@ package com.md.kebunq.ui.register
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
@@ -17,12 +16,12 @@ import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.AuthCredential
-import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.md.kebunq.DataStoreManager
 import com.md.kebunq.MainActivity
 import com.md.kebunq.R
 import com.md.kebunq.data.User
@@ -39,6 +38,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var registerViewModel: UserViewModel
+    private lateinit var dataStoreManager: DataStoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +47,10 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        dataStoreManager = DataStoreManager.getInstance(applicationContext)
+
         val repository = UserRepository(ApiConfig.getApiService())
-        val viewModelFactory = UserViewModelFactory(repository)
+        val viewModelFactory = UserViewModelFactory(repository, dataStoreManager)
         registerViewModel = ViewModelProvider(this, viewModelFactory)[UserViewModel::class.java]
 
         auth = Firebase.auth

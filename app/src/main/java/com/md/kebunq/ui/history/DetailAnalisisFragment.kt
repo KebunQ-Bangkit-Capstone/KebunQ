@@ -81,7 +81,7 @@ class DetailAnalisisFragment : Fragment() {
         val date = inputFormat.parse(dateString)
 
         val outputFormat = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale("id", "ID"))
-        return outputFormat.format(date)
+        return outputFormat.format(date!!)
     }
     private fun updateUI(detail: DetailPredictionResponse) {
         binding.tvHasilAnalisis.text = detail.diseaseName

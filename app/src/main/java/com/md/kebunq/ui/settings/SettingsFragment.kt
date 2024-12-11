@@ -2,15 +2,18 @@ package com.md.kebunq.ui.settings
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.md.kebunq.DataStoreManager
 import com.md.kebunq.R
+import com.md.kebunq.data.SettingsViewModelFactory
 import com.md.kebunq.data.UserRepository
 import com.md.kebunq.data.UserViewModel
 import com.md.kebunq.data.UserViewModelFactory
@@ -37,14 +40,24 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        settingViewModel = ViewModelProvider(requireActivity()).get(SettingsViewModel::class.java)
+        val dataStoreManager = DataStoreManager.getInstance(requireContext())
+        // Inisialisasi ViewModel
+        settingViewModel = ViewModelProvider(
+            requireActivity(),
+            SettingsViewModelFactory(requireActivity().application, dataStoreManager)
+        )[SettingsViewModel::class.java]
 
-        val factory = UserViewModelFactory(UserRepository(ApiConfig.getApiService()))
+        val factory = UserViewModelFactory(
+            UserRepository(ApiConfig.getApiService()),
+            dataStoreManager
+        )
         userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
+
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         if (userId != null) {
             userViewModel.getUserById(userId)
         }
+
         userViewModel.detailUser.observe(viewLifecycleOwner) { result ->
             result.onSuccess { response ->
                 binding.tvUserName.text = response.name
@@ -59,23 +72,31 @@ class SettingsFragment : Fragment() {
             binding.toggleDarkmode.isChecked = isDarkMode
         }
 
-//        val username = FirebaseAuth.getInstance().currentUser?.displayName
-//        val email = FirebaseAuth.getInstance().currentUser?.email
-//
-//        binding.tvUserName.text = username
-//        binding.ivUserEmail.text = email
-//        binding.btnLogout.setOnClickListener {
-//            userViewModel.signOut()
-//            //balik ke welcome activity
-//            findNavController().navigate(R.id.action_settingsFragment_to_welcomeActivity)
-//        }
-
         binding.btnLogout.setOnClickListener {
-            userViewModel.signOut()
-            val intent = Intent(requireContext(), WelcomeActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            // Tampilkan dialog konfirmasi
+            android.app.AlertDialog.Builder(requireContext())
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Yes") { _, _ ->
+                    // Proses logout
+                    userViewModel.signOut()
+
+                    parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+
+                    // Hapus semua data di back stack
+                    val intent = Intent(requireContext(), WelcomeActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    Log.d("LogoutIntent", "Navigating to WelcomeActivity")
+
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
+
         // Set up the switch listener to update dark mode setting
         binding.toggleDarkmode.setOnCheckedChangeListener { _, isChecked ->
             settingViewModel.saveDarkModeSetting(isChecked)

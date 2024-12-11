@@ -5,7 +5,6 @@
     <string name="History">Riwayat Prediksi</string>
     <string name="list_penyakit">Daftar Penyakit</string>
     <string name="settings">Pengaturan</string>
-    <string name="selamat_datang">Selamat Datang, Nama User!</string>
     <string name="ajakan_deteksi">Deteksi penyakit tanamanmu sekarang!</string>
     <string name="fab_content_desc">deteksi</string>
     <string name="tv_deskripsi_home">Pilih dulu jenis tanamanmu ya..</string>
@@ -102,4 +101,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <string name="plant_disease_image">plant disease image</string>
     <string name="error_msg_listdiseases">Tidak ada list penyakit yang tersedia</string>
     <string name="description">Deskripsi</string>
+    <string name="welcome_text">Selamat Datang, %1$s</string>
+    <string name="selamat_datang">Selamat datang!</string>
 </resources>

@@ -34,11 +34,13 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "111"
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             // Lakukan aksi refresh, misalnya panggil ulang API
-            viewModel.getPredictionsByUserId(userId)
+            if (userId != null) {
+                viewModel.getPredictionsByUserId(userId)
+            }
 
             // Matikan animasi loading setelah data selesai dimuat
             viewModel.predictionsHistory.observe(viewLifecycleOwner) {
