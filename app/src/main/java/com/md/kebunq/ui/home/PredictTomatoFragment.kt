@@ -186,7 +186,7 @@ class PredictTomatoFragment : Fragment(R.layout.fragment_prediction) {
         }
 
         findNavController().navigate(
-            R.id.action_tomatoFragment_to_detailPenyakitFragment,
+            R.id.actionPredictTomatoFragmentToDetailAnalisisFragment,
             bundle,
             androidx.navigation.NavOptions.Builder()
                 .setPopUpTo(R.id.navigation_tomato, true)

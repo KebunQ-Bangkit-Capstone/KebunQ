@@ -173,7 +173,7 @@ class PredictGrapeFragment : Fragment(R.layout.fragment_prediction) {
         }
 
         findNavController().navigate(
-            R.id.action_grapeFragment_to_detailPenyakitFragment,
+            R.id.actionPredictGrapeFragmentToDetailAnalisisFragment,
             bundle,
             androidx.navigation.NavOptions.Builder()
                 .setPopUpTo(R.id.navigation_grape, true)

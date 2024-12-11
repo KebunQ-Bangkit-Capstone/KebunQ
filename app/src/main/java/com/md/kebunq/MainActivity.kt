@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_history,
-                R.id.navigation_community,
+//                R.id.navigation_community,
                 R.id.navigation_list_penyakit,
                 R.id.navigation_settings
             )
@@ -105,6 +105,8 @@ class MainActivity : AppCompatActivity() {
         // Menyembunyikan BottomNavigationView di halaman turunan
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
+                R.id.termsConsFragment,
+                R.id.accPrivacyFragment,
                 R.id.navigation_prediksi_timun,
                 R.id.navigation_prediksi_anggur,
                 R.id.navigation_prediksi_tomato,

@@ -48,17 +48,27 @@
     </fragment>
 
 
-    <fragment
-        android:id="@+id/navigation_community"
-        android:name="com.md.kebunq.ui.community.CommunityFragment"
-        android:label="@string/community"
-        tools:layout="@layout/fragment_settings" />
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_community"-->
+<!--        android:name="com.md.kebunq.ui.community.CommunityFragment"-->
+<!--        android:label="@string/community"-->
+<!--        tools:layout="@layout/fragment_community" />-->
 
     <fragment
         android:id="@+id/navigation_list_penyakit"
         android:name="com.md.kebunq.ui.listPenyakit.ListPenyakitFragment"
         android:label="@string/list_penyakit"
-        tools:layout="@layout/fragment_list_penyakit"/>
+        tools:layout="@layout/fragment_list_penyakit">
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_cucumberFragment"
+            app:destination="@id/navigation_cucumber" />
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_grapeFragment"
+            app:destination="@id/navigation_grape" />
+        <action
+            android:id="@+id/action_listPenyakitFragment_to_tomatoFragment"
+            app:destination="@id/navigation_tomato" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_settings"
@@ -96,6 +106,14 @@
             app:destination="@id/navigation_detail_penyakit" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_detail_penyakit"
+        android:name="com.md.kebunq.ui.listPenyakit.DetailPenyakitFragment"
+        android:label="Detail Penyakit" >
+        <argument
+            android:name="disease_item"
+            app:argType="com.md.kebunq.data.response.DiseasesItem" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_prediksi_anggur"
@@ -140,13 +158,5 @@
         android:label="Terms and Conditions"
         tools:layout="@layout/fragment_terms_cons"/>
 
-    <fragment
-        android:id="@+id/navigation_detail_penyakit"
-        android:name="com.md.kebunq.ui.listPenyakit.DetailPenyakitFragment"
-        android:label="Detail Penyakit" >
-        <argument
-            android:name="disease_item"
-            app:argType="com.md.kebunq.data.response.DiseasesItem"/>
-    </fragment>
 
 </navigation>

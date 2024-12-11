@@ -2,8 +2,10 @@ package com.md.kebunq.ui.listPenyakit
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,6 +28,11 @@ class TomatoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            title = "Tomat"
+        }
+        setHasOptionsMenu(true)
         _binding = FragmentTomatoBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -76,6 +83,17 @@ class TomatoFragment : Fragment() {
 
         viewModel.fetchDiseasesByPlant("2")
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().navigateUp() // Navigasi kembali
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

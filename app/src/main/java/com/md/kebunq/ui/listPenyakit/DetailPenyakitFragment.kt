@@ -2,11 +2,14 @@ package com.md.kebunq.ui.listPenyakit
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.md.kebunq.data.response.DiseasesItem
 import com.md.kebunq.data.retrofit.ApiConfig
@@ -23,6 +26,10 @@ class DetailPenyakitFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+        }
+        setHasOptionsMenu(true)
         _binding = FragmentDetailPenyakitBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -79,6 +86,16 @@ class DetailPenyakitFragment : Fragment() {
                     .load(diseases.temporaryImageUrl)
                     .into(binding.ivPlant)
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                findNavController().navigateUp() // Navigasi kembali
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

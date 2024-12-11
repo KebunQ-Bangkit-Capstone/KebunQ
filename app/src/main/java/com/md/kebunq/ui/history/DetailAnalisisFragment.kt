@@ -96,6 +96,7 @@ class DetailAnalisisFragment : Fragment() {
         val args = Bundle().apply {
             putString("ANALYSIS", detail.analysis)
             putString("TREATMENT", detail.treatment)
+            putString("PREDICTION_ID", detail.predictionId)
         }
         val sectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
         sectionsPagerAdapter.setArguments(args)

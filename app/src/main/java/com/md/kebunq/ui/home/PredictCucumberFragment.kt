@@ -173,7 +173,7 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
         }
 
         findNavController().navigate(
-            R.id.action_cucumberFragment_to_detailPenyakitFragment,
+            R.id.actionPredictCucumberFragmentToDetailAnalisisFragment,
             bundle,
             androidx.navigation.NavOptions.Builder()
                 .setPopUpTo(R.id.navigation_cucumber, true)

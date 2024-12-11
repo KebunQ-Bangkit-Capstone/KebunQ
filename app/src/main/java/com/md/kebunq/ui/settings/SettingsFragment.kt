@@ -1,9 +1,11 @@
 package com.md.kebunq.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,6 +16,7 @@ import com.md.kebunq.data.UserViewModel
 import com.md.kebunq.data.UserViewModelFactory
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentSettingsBinding
+import com.md.kebunq.ui.welcome.WelcomeActivity
 
 class SettingsFragment : Fragment() {
 
@@ -21,6 +24,7 @@ class SettingsFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var settingViewModel: SettingsViewModel
     private lateinit var userViewModel: UserViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,12 +59,23 @@ class SettingsFragment : Fragment() {
             binding.toggleDarkmode.isChecked = isDarkMode
         }
 
-        val username = FirebaseAuth.getInstance().currentUser?.displayName
-        val email = FirebaseAuth.getInstance().currentUser?.email
+//        val username = FirebaseAuth.getInstance().currentUser?.displayName
+//        val email = FirebaseAuth.getInstance().currentUser?.email
+//
+//        binding.tvUserName.text = username
+//        binding.ivUserEmail.text = email
+//        binding.btnLogout.setOnClickListener {
+//            userViewModel.signOut()
+//            //balik ke welcome activity
+//            findNavController().navigate(R.id.action_settingsFragment_to_welcomeActivity)
+//        }
 
-        binding.tvUserName.text = username
-        binding.ivUserEmail.text = email
-
+        binding.btnLogout.setOnClickListener {
+            userViewModel.signOut()
+            val intent = Intent(requireContext(), WelcomeActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
         // Set up the switch listener to update dark mode setting
         binding.toggleDarkmode.setOnCheckedChangeListener { _, isChecked ->
             settingViewModel.saveDarkModeSetting(isChecked)
@@ -73,6 +88,8 @@ class SettingsFragment : Fragment() {
         binding.btnTermsCons.setOnClickListener {
             findNavController().navigate(R.id.termsConsFragment)
         }
+
+
     }
 
     override fun onDestroyView() {
