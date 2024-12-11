@@ -63,8 +63,6 @@ class UserViewModel(
                 // Bersihkan DataStore
                 dataStoreManager.clearDataStore()
 
-                // Bersihkan LiveData
-                clearLocalUserData()
 
                 _detailUser.value = Result.failure(Exception("User logged out"))
                 _user.value = Result.failure(Exception("User logged out"))
@@ -74,9 +72,4 @@ class UserViewModel(
         }
     }
 
-    private fun clearLocalUserData() {
-        _detailUser.value = null
-        _user.value = null
-        _error.value = null
-    }
 }
