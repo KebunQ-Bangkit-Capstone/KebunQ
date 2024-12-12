@@ -14,6 +14,7 @@ import com.md.kebunq.R
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentTomatoBinding
 
+@Suppress("DEPRECATION")
 class TomatoFragment : Fragment() {
 
     private var _binding: FragmentTomatoBinding? = null
@@ -83,6 +84,7 @@ class TomatoFragment : Fragment() {
         viewModel.fetchDiseasesByPlant("2")
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

@@ -168,6 +168,11 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
+
+        currentUser?.let {
+            Log.d("Auth", "User logged in: ${it.displayName}")
+        }
+
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
