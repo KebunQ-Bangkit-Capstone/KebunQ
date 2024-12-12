@@ -22,6 +22,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.md.kebunq.MainActivity
 import com.md.kebunq.R
+import com.md.kebunq.data.User
+import com.md.kebunq.data.UserViewModel
 import com.md.kebunq.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
 
@@ -29,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var loginViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,6 +133,10 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user: FirebaseUser? = auth.currentUser
+                    val userId = user?.uid ?: ""
+                    val userEmail = user?.email ?: ""
+                    val username = user?.displayName ?: ""
+                    loginViewModel.createUser(User(userId, userEmail, username))
                     val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
                     editor.putBoolean("isLoggedIn", true)
