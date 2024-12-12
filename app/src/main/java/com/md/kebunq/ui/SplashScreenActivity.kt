@@ -16,7 +16,7 @@ class SplashScreenActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", true)
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (isLoggedIn) {
