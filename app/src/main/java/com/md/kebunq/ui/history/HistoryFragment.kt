@@ -1,6 +1,5 @@
 package com.md.kebunq.ui.history
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -83,7 +82,7 @@ class HistoryFragment : Fragment() {
         }
     }
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
+        viewModel = ViewModelProvider(this)[HistoryViewModel::class.java]
     }
 
     private fun setupRecyclerViews() {

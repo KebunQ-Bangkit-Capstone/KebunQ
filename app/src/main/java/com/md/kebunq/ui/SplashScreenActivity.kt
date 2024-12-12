@@ -1,5 +1,6 @@
 package com.md.kebunq.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +10,7 @@ import com.md.kebunq.MainActivity
 import com.md.kebunq.R
 import com.md.kebunq.ui.welcome.WelcomeActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

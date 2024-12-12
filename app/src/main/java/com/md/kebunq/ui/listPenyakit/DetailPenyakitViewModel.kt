@@ -1,7 +1,6 @@
 package com.md.kebunq.ui.listPenyakit
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,7 +20,6 @@ class DetailPenyakitViewModel(private val apiService: ApiService) : ViewModel() 
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _errorMessage = MutableLiveData<String?>()
-    val errorMessage: LiveData<String?> = _errorMessage
 
     fun fetchDiseaseById(plantIndex: String, diseaseId: String) {
         _isLoading.value = true

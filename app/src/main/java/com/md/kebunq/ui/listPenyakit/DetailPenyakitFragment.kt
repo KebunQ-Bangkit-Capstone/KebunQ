@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide
 import com.md.kebunq.data.response.DiseasesItem
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentDetailPenyakitBinding
-import com.md.kebunq.viewmodel.PenyakitViewModelFactory
 
+@Suppress("DEPRECATION")
 class DetailPenyakitFragment : Fragment() {
 
     private var _binding: FragmentDetailPenyakitBinding? = null
@@ -89,6 +89,7 @@ class DetailPenyakitFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

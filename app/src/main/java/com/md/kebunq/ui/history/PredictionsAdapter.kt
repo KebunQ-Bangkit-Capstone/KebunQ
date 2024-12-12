@@ -1,5 +1,6 @@
 package com.md.kebunq.ui.history
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -38,6 +39,7 @@ class PredictionsAdapter(
     }
 
     private val predictions = ArrayList<PredictionsItem>()
+    @SuppressLint("NotifyDataSetChanged")
     fun setList(items: List<PredictionsItem>) {
         predictions.clear()
         predictions.addAll(items)

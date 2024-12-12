@@ -103,4 +103,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
     <string name="description">Deskripsi</string>
     <string name="welcome_text">Selamat Datang, %1$s</string>
     <string name="selamat_datang">Selamat datang!</string>
+    <string name="cs">%1$s - CS %2$s%%</string>
+
 </resources>

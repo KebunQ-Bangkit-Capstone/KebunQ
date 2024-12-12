@@ -33,6 +33,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
+@Suppress("DEPRECATION")
 class PredictTomatoFragment : Fragment(R.layout.fragment_prediction) {
 
     private var _binding: FragmentPredictionBinding? = null
@@ -230,6 +231,7 @@ class PredictTomatoFragment : Fragment(R.layout.fragment_prediction) {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

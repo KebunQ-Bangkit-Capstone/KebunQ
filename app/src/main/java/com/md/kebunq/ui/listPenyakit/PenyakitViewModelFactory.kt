@@ -1,10 +1,8 @@
-package com.md.kebunq.viewmodel
+package com.md.kebunq.ui.listPenyakit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.md.kebunq.data.retrofit.ApiService
-import com.md.kebunq.ui.listPenyakit.DetailPenyakitViewModel
-import com.md.kebunq.ui.listPenyakit.ListPenyakitViewModel
 
 @Suppress("UNCHECKED_CAST")
 class PenyakitViewModelFactory(private val apiService: ApiService) : ViewModelProvider.Factory {

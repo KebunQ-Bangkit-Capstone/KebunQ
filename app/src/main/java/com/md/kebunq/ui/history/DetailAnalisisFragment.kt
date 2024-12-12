@@ -22,6 +22,7 @@ import com.md.kebunq.databinding.FragmentDetailAnalisisBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+@Suppress("DEPRECATION")
 class DetailAnalisisFragment : Fragment() {
     companion object {
         @StringRes
@@ -86,7 +87,12 @@ class DetailAnalisisFragment : Fragment() {
     private fun updateUI(detail: DetailPredictionResponse) {
         binding.tvHasilAnalisis.text = detail.diseaseName
         val createAt = formatDate(detail.createdAt)
-        binding.tvCsTanggal.text = "${createAt} - CS ${detail.confidenceScore}%"
+        binding.tvCsTanggal.text = getString(
+            R.string.cs,
+            createAt,
+            detail.confidenceScore.toString() // Mengubah ke string
+        )
+
         binding.tvJenisTanaman.text = detail.plantName
 
         Glide.with(this)
@@ -110,6 +116,7 @@ class DetailAnalisisFragment : Fragment() {
         }.attach()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

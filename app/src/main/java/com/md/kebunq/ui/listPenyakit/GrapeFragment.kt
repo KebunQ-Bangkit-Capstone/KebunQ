@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.md.kebunq.R
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentGrapeBinding
-import com.md.kebunq.viewmodel.PenyakitViewModelFactory
 
+@Suppress("DEPRECATION")
 class GrapeFragment : Fragment() {
 
     private var _binding: FragmentGrapeBinding? = null
@@ -83,6 +83,7 @@ class GrapeFragment : Fragment() {
 
         viewModel.fetchDiseasesByPlant("1")
     }
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.md.kebunq.MainActivity
 import com.md.kebunq.databinding.ActivityWelcomeBinding

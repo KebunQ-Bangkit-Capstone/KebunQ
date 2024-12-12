@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -60,26 +59,15 @@ class SettingsFragment : Fragment() {
             result.onSuccess { response ->
                 binding.tvUserName.text = response.name
                 binding.ivUserEmail.text = response.email
-            }.onFailure { exception ->
-                binding.tvUserName.text = "Username"
-                binding.ivUserEmail.text = "Email"
+            }.onFailure { _ ->
+                binding.tvUserName.text = getString(R.string.username)
+                binding.ivUserEmail.text = getString(R.string.email)
             }
         }
-        // Observe the dark mode setting and update the switch state
+
         settingViewModel.isDarkMode.observe(viewLifecycleOwner) { isDarkMode ->
             binding.toggleDarkmode.isChecked = isDarkMode
         }
-
-//        val username = FirebaseAuth.getInstance().currentUser?.displayName
-//        val email = FirebaseAuth.getInstance().currentUser?.email
-//
-//        binding.tvUserName.text = username
-//        binding.ivUserEmail.text = email
-//        binding.btnLogout.setOnClickListener {
-//            userViewModel.signOut()
-//            //balik ke welcome activity
-//            findNavController().navigate(R.id.action_settingsFragment_to_welcomeActivity)
-//        }
 
         binding.btnLogout.setOnClickListener {
             val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())

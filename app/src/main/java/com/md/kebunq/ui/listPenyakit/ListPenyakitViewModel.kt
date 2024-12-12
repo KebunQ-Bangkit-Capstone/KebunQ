@@ -19,7 +19,6 @@ class ListPenyakitViewModel(private val apiService: ApiService) : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
 
     // Fungsi untuk mengambil data penyakit berdasarkan tanaman
     fun fetchDiseasesByPlant(plantIndex: String) {

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.md.kebunq.R
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentTomatoBinding
-import com.md.kebunq.viewmodel.PenyakitViewModelFactory
 
 class TomatoFragment : Fragment() {
 

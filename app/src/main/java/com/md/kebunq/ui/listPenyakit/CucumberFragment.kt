@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.md.kebunq.R
 import com.md.kebunq.data.retrofit.ApiConfig
 import com.md.kebunq.databinding.FragmentCucumberBinding
-import com.md.kebunq.viewmodel.PenyakitViewModelFactory
 
+@Suppress("DEPRECATION")
 class CucumberFragment : Fragment() {
 
     private var _binding: FragmentCucumberBinding? = null
@@ -85,6 +85,7 @@ class CucumberFragment : Fragment() {
 
         viewModel.fetchDiseasesByPlant("0")
     }
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

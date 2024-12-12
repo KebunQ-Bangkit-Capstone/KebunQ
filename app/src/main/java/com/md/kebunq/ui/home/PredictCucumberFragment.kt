@@ -33,6 +33,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
+@Suppress("DEPRECATION")
 class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
 
     private var _binding: FragmentPredictionBinding? = null
@@ -110,64 +111,6 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
         val chooser = Intent.createChooser(intent, "Pilih Gambar")
         launcherIntentGallery.launch(chooser)
     }
-
-//    private fun analyzeImage() {
-//        if (currentImageFile == null) {
-//            Toast.makeText(requireContext(), "Silakan pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show()
-//            return
-//        }
-//
-//        val file = currentImageFile!!
-//        val userId = FirebaseAuth.getInstance().currentUser?.uid
-////        val userId = "111"  // Ubah setelah fitur autentikasi
-//        val plantIndex = "0"  // Index tanaman timun
-//
-//        // Menampilkan loading
-//        binding.progressBar.visibility = View.VISIBLE
-//
-//        // Siapkan API Service
-//        val apiService = ApiConfig.getApiService()
-//        val imagePart = MultipartBody.Part.createFormData(
-//            "image",
-//            file.name,
-//            file.asRequestBody("multipart/form-data".toMediaType())
-//        )
-//
-//        // Panggil API prediksi
-//        apiService.predict(userId.toString(), plantIndex, imagePart).enqueue(object : Callback<PredictionResponse> {
-//            override fun onResponse(
-//                call: Call<PredictionResponse>,
-//                response: Response<PredictionResponse>
-//            ) {
-//                binding.progressBar.visibility = View.GONE
-//                if (response.isSuccessful && response.body() != null) {
-//                    val predictionResponse = response.body()!!
-//
-//                    // Ambil data prediksi
-//                    val predictionId = predictionResponse.predictionId
-//                    val predictedPlantIndex = predictionResponse.plantIndex
-//                    val confidenceScore = predictionResponse.confidenceScore
-//                    val diseaseName = predictionResponse.diseaseName
-//
-//                    // Debugging
-//                    println("Prediction ID: $predictionId")
-//                    println("Plant Index: $predictedPlantIndex")
-//                    println("Disease Name: $diseaseName")
-//                    println("Confidence Score: $confidenceScore")
-//
-//                    // Navigasi ke DetailAnalisisFragment
-//                    navigateToDetailFragment(predictionId)
-//                } else {
-//                    Toast.makeText(requireContext(), "Gagal melakukan analisis: ${response.message()}", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
-//                binding.progressBar.visibility = View.GONE
-//                Toast.makeText(requireContext(), "Kesalahan: ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
 
     private fun analyzeImage() {
         if (currentImageFile == null) {
@@ -283,6 +226,7 @@ class PredictCucumberFragment : Fragment(R.layout.fragment_prediction) {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
