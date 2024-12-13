@@ -47,7 +47,7 @@ This project is licensed under the [KebunQ]
 
 If you have any questions or feedback, please reach out to:
 
-Aqilah
+Aqilah Qathrunnada Mumtaz
 - **Email**: [qilahqathxx@gmail.com]
 - **GitHub**: [https://github.com/qitqath]
 
