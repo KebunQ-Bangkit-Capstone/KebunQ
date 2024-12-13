@@ -2,21 +2,25 @@
 
 ## 📱 Project Overview
 
-This repository contains the code and documentation for the [Project Name] mobile application. The application aims to [briefly describe the purpose and goals of the app].
+KebunQ is a mobile application designed to assist home gardeners by leveraging image recognition technology to identify plant diseases in common crops such as grape, tomato, and cucumber. As gardening becomes increasingly popular, many enthusiasts struggle with diagnosing plant health issues, leading to crop failures and discouragement. Our solution allows users to upload images of affected plants, enabling accurate disease identification and treatment recommendations. Additionally, KebunQ provides educational content on plant care.
+
 
 ## 🚀 Features
 
-- []: [Brief explanation of feature]
-- [Feature 2]: [Brief explanation of feature]
-- [Feature 3]: [Brief explanation of feature]
-- ...
+- Detection Feature
+- Prediction History
+- Diseases List
+- Setting (Dark Mode)
+- Profile
+- Authentication (Login, Register)
+  
 
 ## 🛠️ Tech Stack
 
-- **Programming Language**: [e.g., Kotlin/Java for Android, Swift for iOS]
-- **Frameworks/Libraries**: [e.g., Jetpack Compose, Retrofit, Room, etc.]
-- **Tools**: [e.g., Android Studio, Xcode, etc.]
-- **APIs Used**: [List of APIs, if any]
+- **Programming Language**: [Kotlin]
+- **Frameworks/Libraries**: [ Retrofit, Firebase SDK, Glide, Gson, OkHttp]
+- **Tools**: [Android Studio, Figma, Postman]
+- **APIs Used**: [ https://kebunq-backend-api-269618306064.us-central1.run.app/]
 
 ## ⚙️ Installation
 
@@ -24,7 +28,6 @@ This repository contains the code and documentation for the [Project Name] mobil
 
 - Android Studio [version]
 - JDK 17 (or required version)
-- [Other prerequisites]
 
 ### Steps
 
