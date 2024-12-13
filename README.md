@@ -33,7 +33,7 @@ KebunQ is a mobile application designed to assist home gardeners by leveraging i
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/your-repository.git
+   git clone https://github.com/KebunQ-Bangkit-Capstone/kebunQ-app.git
    ```
 2. Open the project in Android Studio.
 3. Sync the Gradle files.
