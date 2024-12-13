@@ -25,9 +25,7 @@ KebunQ is a mobile application designed to assist home gardeners by leveraging i
 ## ⚙️ Installation
 
 ### Prerequisites
-
-- Android Studio [version]
-- JDK 17 (or required version)
+- Minimum SDK API 24 Android 7.0
 
 ### Steps
 
@@ -38,6 +36,19 @@ KebunQ is a mobile application designed to assist home gardeners by leveraging i
 2. Open the project in Android Studio.
 3. Sync the Gradle files.
 4. Run the app on an emulator or physical device.
+
+### Installation via Link
+
+ **Note**: This application is specifically designed for Android-based devices.
+ 
+1. Download the APK file from the provided link:
+   [Download APK](https://drive.google.com/file/d/157iT0g1JTScRLoBVKsoH1v4XVzHaQBiu/view?usp=drive_link)
+2. On your Android device, enable **Install unknown apps** for your browser:
+   - Go to **Settings** > **Apps & notifications** > **Special app access** > **Install unknown apps**.
+   - Select your browser and toggle **Allow from this source**.
+3. Open the downloaded APK file and follow the on-screen instructions to install the app.
+4. Once installed, you can find the app on your home screen or app drawer.
+
 
 ## 📜 License
 
