@@ -17,10 +17,10 @@ KebunQ is a mobile application designed to assist home gardeners by leveraging i
 
 ## 🛠️ Tech Stack
 
-- **Programming Language**: [Kotlin]
-- **Frameworks/Libraries**: [ Retrofit, Firebase SDK, Glide, Gson, OkHttp]
-- **Tools**: [Android Studio, Figma, Postman]
-- **APIs Used**: [ https://kebunq-backend-api-269618306064.us-central1.run.app/]
+- **Programming Language**: Kotlin
+- **Frameworks/Libraries**: Retrofit, Firebase SDK, Glide, Gson, OkHttp
+- **Tools**: Android Studio, Figma, Postman
+- **APIs Used**:  https://kebunq-backend-api-269618306064.us-central1.run.app/
 
 ## ⚙️ Installation
 
@@ -46,6 +46,12 @@ This project is licensed under the [KebunQ]
 ## 📧 Contact
 
 If you have any questions or feedback, please reach out to:
+
+Aqilah
 - **Email**: [your.email@example.com]
 - **GitHub**: [GitHub Profile Link]
+
+Jilan Ablah Hanifah
+- **Email**: [jilanablah@gmail.com]
+- **GitHub**: [https://github.com/jilanAblah139]
 
