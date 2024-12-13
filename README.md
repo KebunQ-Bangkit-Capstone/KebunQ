@@ -48,8 +48,8 @@ This project is licensed under the [KebunQ]
 If you have any questions or feedback, please reach out to:
 
 Aqilah
-- **Email**: [your.email@example.com]
-- **GitHub**: [GitHub Profile Link]
+- **Email**: [qilahqathxx@gmail.com]
+- **GitHub**: [https://github.com/qitqath]
 
 Jilan Ablah Hanifah
 - **Email**: [jilanablah@gmail.com]
